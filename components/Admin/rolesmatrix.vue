@@ -90,69 +90,9 @@
           </table>
 
           <div class="form-bottom">
-            <div class="row mt-4">
-              <div class="col-sm-6 mb-3">
-                <label class="form-label">Hospital Name</label>
-                <select
-                  v-model="HospitalId"
-                  class="form-select"
-                  aria-label="Default select example"
-                  @change="onHospitalCodechange($event)"
-                >
-                  <option value="0">Please Select</option>
-                  <option
-                    v-for="hst in hospitallist"
-                    v-bind:key="hst.id"
-                    v-bind:value="hst.id"
-                  >
-                    {{ hst.hospital_name }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="col-sm-6 mb-3">
-                <label class="form-label">Branch Name</label>
-                <select
-                  v-model="BranchId"
-                  class="form-select"
-                  aria-label="Default select example"
-                  @change="onchangebranch($event)"
-                >
-                  <option value="0">Please Select</option>
-                  <option
-                    v-for="brnch in branchlist"
-                    v-bind:key="brnch.id"
-                    v-bind:value="brnch.id"
-                  >
-                    {{ brnch.hospital_branch_name }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <!-- close-row -->
-
             <div class="row">
               <div class="col-sm-6 mb-3">
-                <label class="form-label">Team</label>
-                <select
-                  v-model="teamId"
-                  class="form-select"
-                  aria-label="Default select example"
-                  @change="onChangeTeam($event)"
-                >
-                  <option value="0">Please Select</option>
-                  <option
-                    v-for="team in teamlist"
-                    v-bind:key="team.id"
-                    v-bind:value="team.id"
-                  >
-                    {{ team.service_name }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="col-sm-6 mb-3">
-                <label class="form-label">Staff Name</label>
+                <label class="form-label">Name</label>
                 <select
                   v-model="staffId"
                   class="form-select"
@@ -161,8 +101,8 @@
                   <option value="0">Please Select</option>
                   <option
                     v-for="stf in stafflist"
-                    v-bind:key="stf.users_id"
-                    v-bind:value="{id:stf.users_id,txt:stf.role}"
+                    v-bind:key="stf.id"
+                    v-bind:value="stf.id"
                   >
                     {{ stf.name }}
                   </option>
@@ -178,6 +118,7 @@
         </li>
       </ul>
         </p>
+        <br>
             <button class="btn btn-success pl-15" :class="SidebarAccess!=1?'hide':''">
               Submit <i class="fal fa-arrow-from-left"></i>
             </button>
@@ -197,19 +138,13 @@ export default {
       errors: [],
       ModuleId: 0,
       SubmoduleId: 0,
-      HospitalId: 0,
-      BranchId: 0,
-      teamId: 0,
       staffId: 0,
       screenIds: "",
       screendetail: null,
       submodulelist: [],
       modulelist: [],
-      branchlist: [],
-      hospitallist: [],
       screenlist: [],
       stafflist: [],
-      teamlist: [],
       selected: [],
       IsSubmodule: true,
       SidebarAccess: null,
@@ -220,7 +155,7 @@ export default {
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.SidebarAccess = JSON.parse(localStorage.getItem("SidebarAccess"));
     this.GetModuleList();
-    this.GethospitalList();
+    this.getStaffList();
   },
   methods: {
     async checkscreen(value, event) {
@@ -286,54 +221,54 @@ export default {
         this.screenlist = [];
       }
     },
-    async onHospitalCodechange(event) {
-      const headers = {
-        Authorization: "Bearer " + this.userdetails.access_token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-      const response = await this.$axios.post(
-        "hospital/get-branch-by-hospital-code",
-        {
-          hospital_code: event.target.value,
-        },
-        { headers }
-      );
-      if (response.data.code == 200 || response.data.code == "200") {
-        this.branchlist = response.data.branches;
-      } else {
-        this.branchlist = [];
-      }
-    },
-    async onchangebranch(event) {
-      const headers = {
-        Authorization: "Bearer " + this.userdetails.access_token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-      const response = await this.$axios.get(
-        "service/getServiceListByBranch?branchId=" + event.target.value,
-        {
-          headers,
-        }
-      );
-      if (response.data.code == 200 || response.data.code == "200") {
-        this.teamlist = response.data.list;
-      } else {
-        this.teamlist = [];
-      }
+    // async onHospitalCodechange(event) {
+    //   const headers = {
+    //     Authorization: "Bearer " + this.userdetails.access_token,
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   };
+    //   const response = await this.$axios.post(
+    //     "hospital/get-branch-by-hospital-code",
+    //     {
+    //       hospital_code: event.target.value,
+    //     },
+    //     { headers }
+    //   );
+    //   if (response.data.code == 200 || response.data.code == "200") {
+    //     this.branchlist = response.data.branches;
+    //   } else {
+    //     this.branchlist = [];
+    //   }
+    // },
+    // async onchangebranch(event) {
+    //   const headers = {
+    //     Authorization: "Bearer " + this.userdetails.access_token,
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   };
+    //   const response = await this.$axios.get(
+    //     "service/getServiceListByBranch?branchId=" + event.target.value,
+    //     {
+    //       headers,
+    //     }
+    //   );
+    //   if (response.data.code == 200 || response.data.code == "200") {
+    //     this.teamlist = response.data.list;
+    //   } else {
+    //     this.teamlist = [];
+    //   }
 
-    },
+    // },
 
-    async onChangeTeam(event){
+    async getStaffList(){
       const headers = {
         Authorization: "Bearer " + this.userdetails.access_token,
         Accept: "application/json",
         "Content-Type": "application/json",
       };
       const response1 = await this.$axios.post(
-        "staff-management/getUserlistbyTeam",
-        { team_id: event.target.value, branch_id: this.BranchId },
+        "staff-management/getAllStaff",
+        {  },
         {
           headers,
         }
@@ -345,21 +280,21 @@ export default {
       }
 
     },
-    async GethospitalList() {
-      const headers = {
-        Authorization: "Bearer " + this.userdetails.access_token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-      const response = await this.$axios.get("hospital/list", {
-        headers,
-      });
-      if (response.data.code == 200 || response.data.code == "200") {
-        this.hospitallist = response.data.list;
-      } else {
-        this.hospitallist = [];
-      }
-    },
+    // async GethospitalList() {
+    //   const headers = {
+    //     Authorization: "Bearer " + this.userdetails.access_token,
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   };
+    //   const response = await this.$axios.get("hospital/list", {
+    //     headers,
+    //   });
+    //   if (response.data.code == 200 || response.data.code == "200") {
+    //     this.hospitallist = response.data.list;
+    //   } else {
+    //     this.hospitallist = [];
+    //   }
+    // },
 
     async onAddroles() {
       this.errors = [];
@@ -367,13 +302,10 @@ export default {
         if (this.ModuleId <= 0) {
           this.errors.push("Module Name  is required.");
         }
-        if (this.HospitalId <= 0) {
-          this.errors.push("Hospital Name  is required.");
+        if (!this.staffId) {
+          this.errors.push("Name  is required.");
         }
-        if (this.staffId <= 0) {
-          this.errors.push("Staff Name  is required.");
-        }
-        if (this.ModuleId && this.HospitalId && this.staffId) {
+        if (this.ModuleId && this.staffId) {
           const headers = {
             Authorization: "Bearer " + this.userdetails.access_token,
             Accept: "application/json",
@@ -395,13 +327,11 @@ export default {
               screen_ids: this.screenIds.toString(),
               sub_module_id: this.SubmoduleId,
               added_by: this.userdetails.user.id,
-              hospital_id: this.HospitalId,
-              branch_id: this.BranchId,
-              team_id: this.teamId,
-              staff_id: this.staffId.id,
+              staff_id: this.staffId,
             },
             { headers }
           );
+
           console.log("my response", response.data);
           if (response.data.code == 200 || response.data.code == "200") {
             this.$swal.fire('created successfully', '', 'success');
@@ -427,9 +357,6 @@ export default {
     async ResetModel() {
       this.ModuleId = 0;
       this.SubmoduleId = 0;
-      this.HospitalId = 0;
-      this.BranchId = 0;
-      this.teamId = 0;
       this.staffId = 0;
       this.selected = [];
       this.screenIds = "";

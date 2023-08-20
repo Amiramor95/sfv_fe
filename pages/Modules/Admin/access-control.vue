@@ -18,8 +18,7 @@
                             <nav>
                                 <ul class="nav nav-tab" id="nav-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-hospital-user"></i>Hospital, Branch &
-                                            Team</a></li>
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-hospital-user"></i>Role</a></li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-laptop-code"></i> Screen Management</a></li>
                                     <li class="nav-item">
@@ -32,7 +31,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade no-border show active" id="nav-home" role="tabpanel">
                             <!-- 01-tab -->
-                            <Hospitalbranchteam />
+                            <RoleSetting />
                         </div>
 
                         <div class="tab-pane fade no-border" id="nav-profile" role="tabpanel">
@@ -55,7 +54,7 @@
 <script>
 import CommonHeader from '../../../components/CommonHeader.vue';
 import CommonSidebar from '../../../components/CommonSidebar.vue';
-import Hospitalbranchteam from "../../../components/Admin/hospitalbranchteam.vue";
+import RoleSetting from "../../../components/Admin/rolesetting.vue";
 import Rolesmatrix from "../../../components/Admin/rolesmatrix.vue";
 import Screenmanagement from "../../../components/Admin/screenmanagement.vue";
 export default {
@@ -63,7 +62,7 @@ export default {
         CommonHeader,
         CommonSidebar,
         Rolesmatrix,
-        Hospitalbranchteam,
+        RoleSetting,
         Screenmanagement,
     },
     name: "access-control",
