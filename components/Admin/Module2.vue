@@ -3,13 +3,13 @@
     <form class="g-3 mt-3" method="post" @submit.prevent="onAddsubModule">
       <div class="row mb-4 align-items-center">
         <div class="col-md-4">
-          <label for="" class="form-label">Module</label>
+          <label for="" class="form-label">Modul</label>
           <select
             v-model="ModuleId"
             class="form-select"
             aria-label="Default select example"
           >
-         <option value="0">Please Select</option>
+         <option value="0">Pilih</option>
             <option
               v-for="md in modulelist"
               v-bind:key="md.id"
@@ -21,16 +21,16 @@
         </div>
 
         <div class="col-md-3">
-          <label for="" class="form-label">Sub Module Code</label>
-          <input type="text" class="form-control" placeholder="Enter Code" v-model="subcode" />
+          <label for="" class="form-label">Kod Sub Modul</label>
+          <input type="text" class="form-control" placeholder="Masukkan Kod" v-model="subcode" />
         </div>
 
         <div class="col-md-4">
-          <label for="" class="form-label">Sub Module Name</label>
+          <label for="" class="form-label">Nama Sub Modul</label>
           <input
             type="text"
             class="form-control"
-            placeholder="Enter Sub Module Name" v-model="subname"
+            placeholder="Masukkan Nama Sub Modul" v-model="subname"
           />
         </div>
       </div>
@@ -44,10 +44,10 @@
         </p>
       <div class="d-flex justify-content-center" :class="SidebarAccess!=1?'hide':''">
         <button type="submit" class="btn btn-warning btn-text ml-auto" v-if="Id">
-        <i class="fa fa-save"></i> Save
+        <i class="fa fa-save"></i> Simpan
         </button>
          <button type="submit" class="btn btn-warning btn-text" v-if="!Id">
-          <i class="fa fa-plus"></i> Add Parameter
+          <i class="fa fa-plus"></i> Tambah Parameter
         </button>
       </div>
     </form>
@@ -55,16 +55,16 @@
 
 
     <div class="table-title">
-      <h3>List of Modules</h3>
+      <h3>Senarai Modul</h3>
     </div>
     <table class="table table-striped data-table5 font-13 display nowrap" style="width: 100%">
       <thead>
         <tr>
-          <th>No</th>
-          <th>Module</th>
-          <th>Sub Module Code</th>
-          <th>Sub Module Name</th>
-          <th>Action</th>
+          <th>Bil</th>
+          <th>Modul</th>
+          <th>Kod Sub Modul</th>
+          <th>Nama Sub Modul</th>
+          <th>Tindakan</th>
         </tr>
       </thead>
       <tbody>
@@ -120,20 +120,20 @@ export default {
         this.list = resp.data.list;
         console.log(this.list);
         $(document).ready(function () {
-          $(".data-table5").DataTable({
-            searching: false,
-            bLengthChange: false,
-            bInfo: false,
-            // autoWidth: false,
-            // responsive: true,
-            scrollX: true,
-            language: {
-              paginate: {
-                next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
-                previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
-              },
-            },
-          });
+          //$(".data-table5").DataTable({
+          //  searching: false,
+          //  bLengthChange: false,
+          //  bInfo: false,
+          //  // autoWidth: false,
+          //  // responsive: true,
+          //  scrollX: true,
+          //  language: {
+          //    paginate: {
+          //      next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
+          //      previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
+          //    },
+          //  },
+          //});
           $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
             $($.fn.dataTable.tables(true))
               .DataTable()
@@ -164,13 +164,13 @@ export default {
       this.errors = [];
       try {
         if (this.ModuleId <= 0) {
-          this.errors.push("Module is required.");
+          this.errors.push("Modul diperlukan.");
         }
         if (!this.subcode) {
-          this.errors.push("Sub Module Code is required.");
+          this.errors.push("Kod Sub Modul diperlukan.");
         }
         if (!this.subname) {
-          this.errors.push("Sub Module Name is required.");
+          this.errors.push("NAma Sub Modul diperlukan.");
         } else {
           const headers = {
             Authorization: "Bearer " + this.userdetails.access_token,
@@ -189,7 +189,7 @@ export default {
               { headers }
             );
             if (response.data.code == 200 || response.data.code == "200") {
-              this.$swal.fire('Successfully Update', '', 'success');
+              this.$swal.fire('Berjaya disimpan', '', 'berjaya');
               this.resetmodel();
             } else {
               this.$swal.fire({
@@ -213,7 +213,7 @@ export default {
             );
             if (response.data.code == 200 || response.data.code == "200") {
 this.$swal.fire(
-                  'Successfully Update',
+                  'Berjaya dikemaskini',
                 );
               this.resetmodel();
             } else {
@@ -307,7 +307,7 @@ this.$swal.fire(
           { headers }
         );
         if (response.data.code == 200) {
-          this.$swal.fire('Deleted Successfully', '', 'success');
+          this.$swal.fire('Rekod berjaya dipadamkan', '', 'berjaya');
           this.GetList();
         } else {
           this.$swal.fire({

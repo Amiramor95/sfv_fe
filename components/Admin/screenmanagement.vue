@@ -2,8 +2,8 @@
   <div class="card mb-4">
     <div class="card-header bg-transparent">
       <h4>
-        Screen and Module Management (<span style="color: red"
-          >*Please contact your system administrator for assistance</span
+        Pengurusan Skrin Dan Modul Sistem (<span style="color: red"
+          >*Sila hubungi pentadbir sistem anda untuk bantuan</span
         >)
       </h4>
     </div>
@@ -18,7 +18,7 @@
               role="tab"
               aria-controls="nav-Module"
               aria-selected="true"
-              ><i class="fa fa-user-lock"></i> Setting 1: Module</a
+              ><i class="fa fa-user-lock"></i> Tetapan 1: Modul</a
             >
           </li>
           <li class="nav-item">
@@ -30,7 +30,7 @@
               role="tab"
               aria-controls="nav-Sub-Module"
               aria-selected="false"
-              ><i class="fa fa-ban"></i> Setting 2: Sub Module</a
+              ><i class="fa fa-ban"></i> Tetapan 2: Sub Modul</a
             >
           </li>
           <li class="nav-item">
@@ -42,7 +42,7 @@
               role="tab"
               aria-controls="nav-Screen-Page"
               aria-selected="false"
-              ><i class="fa fa-clock"></i> Setting 3: Screen Page</a
+              ><i class="fa fa-clock"></i> Tetapan 3: Halaman Skrin</a
             >
           </li>
         </ul>
