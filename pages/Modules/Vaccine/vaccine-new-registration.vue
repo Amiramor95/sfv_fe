@@ -4,315 +4,673 @@
       <div id="layoutSidenav_content">
           <CommonHeader />
           <main>
-              <Loader v-if="loader" />
-  
-              <div class="container-fluid px-4">
-  
-                  <div class="card mb-4">
-                      <div class="page-title">
-                          <h1>Company Basic Information</h1>
-                      </div>
-                      <div class="card mb-4">
-                          <div class="card-body">
-  
-                              <div class="row">
-                                  <div class="col-sm-5">
-                                      <div class="mb-3">
-                                          <label class="form-label">Company Name<small>*</small></label>
-                                          <input type="text" class="form-control" placeholder="Enter Company Name" v-model="company_name" />
-                                      </div>
-                                  </div>
-  
-                                  <div class="col-sm-5">
-                                      <div class="mb-3">
-                                          <label class="form-label">Company Registration Number<small>*</small></label>
-                                          <input type="text" class="form-control" placeholder="Enter Company Registration Number" v-model="company_registration_number" />
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-sm-10">
-                                      <div class="mb-3">
-                                          <label class="form-label">Company Address</label>
-                                          <input type="text" class="form-control mb-2" placeholder="Enter Street Address" name="" v-model="company_address_1" />
-                                          <input type="text" class="form-control mb-2" placeholder="Enter Street Address" name="" v-model="company_address_2" />
-                                          <input type="text" class="form-control mb-2" placeholder="Enter Street Address" name="" v-model="company_address_3" />
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-sm-4">
-                                      <div class="mb-3">
-                                          <label class="form-label">State</label>
-                                          <select v-model="state_id" class="form-select" aria-label="Default select example" @change="onSelectedState($event)">
-                                              <option value="0">Select</option>
-                                              <option v-for="st in StateList" v-bind:key="st.id" v-bind:value="st.id">
-                                                  {{ st.state_name }}
-                                              </option>
-                                          </select>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                      <div class="mb-3">
-                                          <label class="form-label">City</label>
-                                          <select v-model="city_id" @change="getPostcodeList($event)" class="form-select" aria-label="Default select example">
-                                              <option value="0">Select</option>
-                                              <option v-for="ct in CityList" v-bind:key="ct.city_name" v-bind:value="ct.city_name">
-                                                  {{ ct.city_name }}
-                                              </option>
-                                          </select>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                      <div class="mb-3">
-                                          <label class="form-label">Postcode</label>
-                                          <select v-model="postcode" class="form-select" aria-label="Default Select example">
-                                              <option value="0">Select</option>
-                                              <option v-for="ct in postcodelist" v-bind:key="ct.id" v-bind:value="ct.id">
-                                                  {{ ct.postcode }}
-                                              </option>
-                                          </select>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row mb-3 mt-3">
-                                  <label class="col-sm-4 col-form-label">Employment Sector</label>
-                                  <div class="col-sm-8">
-                                      <div class="row">
-                                          <div class="col-sm-6">
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Manufacturing" v-model="manufacturing" id="es-1" />
-                                                  <label class="form-check-label" for="es-1">
-                                                      Manufacturing
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Oil and Gas" v-model="oil" id="es-2" />
-                                                  <label class="form-check-label" for="es-2">
-                                                      Oil and Gas
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Education" v-model="education" id="es-3" />
-                                                  <label class="form-check-label" for="es-3">
-                                                      Education
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Business" v-model="business" id="es-5" />
-                                                  <label class="form-check-label" for="es-5">
-                                                      Business
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Information Technology" v-model="information" id="es-1" />
-                                                  <label class="form-check-label" for="es-1">
-                                                      Information Technology
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Telecommunication" v-model="telecommunication" id="es-6" />
-                                                  <label class="form-check-label" for="es-6">
-                                                      Telecommunication
-                                                  </label>
-                                              </div>
-                                          </div>
-  
-                                          <div class="col-sm-6 es-box">
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Building Contruction" v-model="building" id="es-8" />
-                                                  <label class="form-check-label" for="es-8">
-                                                      Building Contruction
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Transportation" v-model="transportation" id="es-9" />
-                                                  <label class="form-check-label" for="es-9">
-                                                      Transportation
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Service" v-model="service" id="es-10" />
-                                                  <label class="form-check-label" for="es-10">
-                                                      Service
-                                                  </label>
-                                              </div>
-  
-                                              <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="Otheres" v-model="otheres" id="es-7" />
-                                                  <label class="form-check-label" for="es-7">
-                                                      Others
-                                                  </label>
-                                              </div>
-  
-                                              <div class="Otheres hide">
-                                                  <input type="text" placeholder="Please specify" class="form-control" v-model="other" name="" />
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-  
-                              <div class="row mb-3 mt-3">
-                                  <label class="col-sm-4 col-form-label">Corporate Body Sector</label>
-                                  <div class="col-sm-8 cbs-box">
-                                      <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" value="Government Sector" v-model="government" id="cbs-1" />
-                                          <label class="form-check-label" for="cbs-1">
-                                              Government Sector
-                                          </label>
-                                      </div>
-  
-                                      <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" value="Private Sector" v-model="privatesector" id="cbs-2" />
-                                          <label class="form-check-label" for="cbs-2">
-                                              Private Sector
-                                          </label>
-                                      </div>
-  
-                                      <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" value="Small and Medium Enterprises (SME)" v-model="small" id="cbs-3" />
-                                          <label class="form-check-label" for="cbs-3">
-                                              Small and Medium Enterprises (SME)
-                                          </label>
-                                      </div>
-  
-                                      <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" value="Othercbs" v-model="othercbs" id="cbs-5" />
-                                          <label class="form-check-label" for="cbs-5">
-                                              Others
-                                          </label>
-                                      </div>
-  
-                                      <div class="Othercbs hide">
-                                          <input type="text" placeholder="Please specify" class="form-control" v-model="othersector" name="" />
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row mb-3 mt-3">
-                                  <div class="col-sm-4">
-                                      <label class="form-label">Does your company have an existing training program in place?<small>*</small></label>
-                                  </div>
-                                  <div class="col-sm-5">
-                                      <div class="form-check form-check-inline col-sm-2">
-                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" v-model="is_existing_training_program" />
-                                          <label class="form-check-label" for="flexRadioDefault1">
-                                              Yes
-                                          </label>
-                                      </div>
-                                      <div class="form-check form-check-inline col-sm-2">
-                                          <input value="0" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="is_existing_training_program" />
-                                          <label class="form-check-label" for="flexRadioDefault2">
-                                              No
-                                          </label>
-                                      </div>
-  
-                                  </div>
-                              </div>
-  
+          <Loader v-if="loader" />
+          <div class="container-fluid px-4">
+          <div class="page-title"><h1>Pendaftaran Baharu Vaksin</h1></div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <div>
+                <table class="notes">
+                  <thead>
+                    <tr><th colspan="3">BAHAGIAN 1 : MAKLUMAT PENGURUSAN</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Nama Penuh Pemohon <br> <span style="font-style:italic;color: grey;font-size: smaller;">Full Name of Applicant </span></th>
+                      <td style="width: 2%;">:</td>
+                      <td>NURUL SAADAH BINTI MOHD SHARIFF</td>
+                    </tr>
+                    <tr>
+                      <th>Nombor Kad Pengenalan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Identification Card (IC) Number of Applicant</span></th>
+                      <td>:</td>
+                      <td>890408-03-5256</td>
+                    </tr>
+                    <tr>
+                      <th>Alamat<br> <span style="font-style:italic;color: grey;font-size: smaller;">Address</span> </th>
+                      <td>:</td>
+                      <td>NO 53,Jalan Kajang Perdana 2/5, Taman Kajang Perdana, 43000 Kajang</td>
+                    </tr>
+                    <tr>
+                      <th>Nama Pengilang Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine Manufacturer</span> </th>
+                      <td>:</td>
+                      <td>ABC Manufacture</td>
+                    </tr>
+                    <tr>
+                      <th>Nombor Pendaftaran Pengilang Vaksin Yang telah didaftarkan oleh DVS<br> <span style="font-style:italic;color: grey;font-size: smaller;">DVS Manufacturer Registration Number</span> </th>
+                      <td>:</td>
+                      <td>M100023</td>
+                    </tr>
+                    <tr>
+                      <th>Nama Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine</span> </th>
+                      <td>:</td>
+                      <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;"></td>
+                    </tr>
+                    <tr>
+                      <th>Penyakit yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Disease</span> </th>
+                      <td>:</td>
+                      <td><textarea v-model="target_disease" rows="2" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                      <th>Spesies yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Species</span> </th>
+                      <td>:</td>
+                      <td><textarea v-model="target_species" rows="2" class="form-control"></textarea></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="accordion form-accordion mt-3" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne" >OCCASION OF SERVICES</button>
+                    </h2>
+                    <div
+                      id="collapseOne"
+                      class="accordion-collapse collapse show"
+                      aria-labelledby="headingOne"
+                      data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="row mb-3">
+                          <label class="col-sm-4 col-form-label"
+                            >Location Of Services<small style="color:red">*</small> </label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              class="form-select"
+                              v-model="location_services"
+                            >
+                              <option value="0">
+                                Select location of services
+                              </option>
+                             <option
+              v-for="loc in locationlist"
+              v-bind:key="loc.id"
+              v-bind:value="loc.id"
+            >
+              {{ loc.section_value }}
+            </option>
+                            </select>
                           </div>
-                      </div>
-                      <div class="page-title">
-                          <h1>Contact Information</h1>
-                      </div>
-  
-                      <div class="card mb-4">
-                          <div class="card-body">
-  
-                              <div class="row">
-                                  <div class="col-sm-5">
-                                      <div class="mb-3">
-                                          <label class="form-label">Name<small>*</small></label>
-                                          <input type="text" class="form-control" v-model="contact_name" />
-                                      </div>
-                                  </div>
-  
-                                  <div class="col-sm-5">
-                                      <div class="mb-3">
-                                          <label class="form-label">Position in Company<small>*</small></label>
-                                          <input type="text" class="form-control" v-model="contact_position" />
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-sm-5">
-                                      <div class="mb-3">
-                                          <label class="form-label">Contact Number<small>*</small></label>
-                                          <input type="text" class="form-control" v-model="contact_number" />
-                                      </div>
-                                  </div>
-  
-                                  <div class="col-sm-5">
-                                      <div class="mb-3">
-                                          <label class="form-label">Email<small>*</small></label>
-                                          <input type="text" class="form-control" v-model="contact_email" />
-                                      </div>
-                                  </div>
-                              </div>
-  
+                        </div>
+                        <!-- close-row -->
+                        <div class="row mb-3">
+                          <label class="col-sm-4 col-form-label"
+                            >Type Of Diagnosis<small style="color:red">*</small> </label
+                          >
+                          <div class="col-sm-8">
+                            <select class="form-select" v-model="type_diagnosis_id">
+                                <option value="0">Select Diagnosis</option>
+                                <option
+                                      v-for="catcode in diagonisislist"
+                                      v-bind:key="catcode.id"
+                                      v-bind:value="catcode.id"
+                                    >
+                                    {{ catcode.icd_code }} {{catcode.icd_name}}
+                                    </option>
+                              </select>
                           </div>
+                        </div>
+                        <div class="row mb-3 align-items-flex-start">
+                      <label class="col-sm-4 col-form-label">Additional Type Of Diagnosis</label>
+                      <div class="col-sm-8 align-items-flex-start" >
+                          <select
+                          id="additionalbox" 
+                          class="form-select multiselect" multiple="multiple">
+                              <option value="0">Please Select</option><option
+                              v-for="catcode in diagonisislist"
+                              v-bind:key="catcode.id"
+                              v-bind:value="catcode.id">
+                            {{ catcode.icd_code }} {{catcode.icd_name}}
+                            </option>
+                        </select>
                       </div>
-                      <p v-if="errorList.length">
+                    </div>
+                  
+                        <!-- close-row -->
+                        <div class="row mb-3">
+                          <label class="col-sm-4 col-form-label"
+                            >Category Of Services<small style="color:red">*</small>
+                          </label>
+                          <div class="col-sm-8">
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio1"
+                                value="assisstance"
+                                v-model="category_services"
+                              />
+                              <label class="form-check-label" for="inlineRadio1"
+                                >Assisstance / Supervision</label
+                              >
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio2"
+                                value="clinical-work"
+                                v-model="category_services"
+                              />
+                              <label class="form-check-label" for="inlineRadio2"
+                                >Clinical Work / Procedure
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio3"
+                                value="external"
+                                v-model="category_services"
+                              />
+                              <label class="form-check-label" for="inlineRadio3"
+                                >External</label
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <!-- close-row -->
+                        <!-- hide-div -->
+                        <div class="assisstance services hide mb-3">
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label class="form-label">Services<small style="color:red">*</small> </label>
+                              <select class="form-select" v-model="services_id">
+                                 <option value="0">Select Service</option>
+                      <option
+                        v-for="slt in assistancelist"
+                        v-bind:key="slt.id"
+                        v-bind:value="slt.id"
+                      >
+                        {{ slt.section_value }}
+                      </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 01 -->
+                        <div class="clinical-work services hide mb-3">
+                        <div class="row mb-6 align-items-flex-start">
+                          <div class="col-md-4 mb-3">
+                            <label class="form-label">ICD 9 CODE<small style="color:red">*</small> </label>
+                            <select
+                              class="form-select"
+                              v-model="code_id"
+                              @change="onCategorycodebind($event)"
+                            >
+                              <option value="0">Select code</option>
+                              <option
+                                v-for="type in codelist"
+                                v-bind:key="type.id"
+                                v-bind:value="type.id">
+                               {{ type.icd_category_code }} {{type.icd_category_name}}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-8 mb-3">
+                          <div><label class="form-label">ICD 9 SUB CODE<small style="color:red">*</small> </label></div>
+                          <div>
+                          <div class="mt-2 align-items-flex-start">
+                            <select
+                              class="form-select multiselect" multiple="multiple"
+                              id="sub_code_id" style="width:100%">
+
+                              <option value="0">Select code</option>
+                              <option
+                                v-for="catcode in icdcatcodelist"
+                                v-bind:key="catcode.id"
+                                v-bind:value="catcode.id">
+                                {{ catcode.icd_code }}{{catcode.icd_name}}
+                              </option>
+                            </select>
+                          </div>
+                          </div>
+                          </div>
+
+                         
+                          
+                        </div>
+
+                        <!--additional code-->
+                        <div class="row mb-6 align-items-flex-start">
+                          <div class="col-md-4 mb-3">
+                            <label class="form-label">Additional ICD 9 CODE</label>
+                            <select
+                              class="form-select"
+                              v-model="add_code_id"
+                              @change="onCategoryaddcodebind($event)"
+                            >
+                              <option value="0">Select code</option>
+                              <option
+                                v-for="type in codelist"
+                                v-bind:key="type.id"
+                                v-bind:value="type.id">
+                               {{ type.icd_category_code }} {{type.icd_category_name}}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-8 mb-3">
+                          <div><label class="form-label">Additional ICD 9 SUB CODE</label></div>
+                          <div>
+                          <div class="mt-2 align-items-flex-start">
+                            <select
+                              class="form-select multiselect" multiple="multiple"
+                              id="add_sub_code_id" style="width:100%">
+
+                              <option value="0">Select code</option>
+                              <option
+                                v-for="catcode in addicdcatcodelist"
+                                v-bind:key="catcode.id"
+                                v-bind:value="catcode.id">
+                                {{ catcode.icd_code }}{{catcode.icd_name}}
+                              </option>
+                            </select>
+                          </div>
+                          </div>
+                          </div>
+
+                         
+                          
+                        </div>
+                      </div>
+                        <!-- 02 -->
+                        <div class="external services hide mb-3">
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label class="form-label">Services<small style="color:red">*</small> </label>
+                              <select class="form-select" v-model="serviceid">
+                                <option value="0">Select Service</option>
+                      <option
+                        v-for="slt in externallist"
+                        v-bind:key="slt.id"
+                        v-bind:value="slt.id"
+                      >
+                        {{ slt.section_value }}
+                      </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 03 -->
+                        <!-- hide-div -->
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label class="form-label"
+                              >Complexity Of Service<small style="color:red">*</small> </label
+                            >
+                            <select
+                              class="form-select"
+                              v-model="complexity_services"
+                            >
+                              <option value="0">
+                                Select Complexity Of Service
+                              </option>
+                      <option
+                        v-for="cm in comlexcitylist"
+                        v-bind:key="cm.id"
+                        v-bind:value="cm.id"
+                      >
+                        {{ cm.section_value }}
+                      </option>
+                            </select>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label class="form-label">Outcome<small style="color:red">*</small> </label>
+                            <select class="form-select" v-model="outcome">
+                              <option value="0">Select outcome</option>
+                      <option
+                        v-for="out in outcomelist"
+                        v-bind:key="out.id"
+                        v-bind:value="out.id"
+                      >
+                        {{ out.section_value }}
+                      </option>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- close-row -->
+                      </div>
+                    </div>
+                  </div>
+                  <!--  -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                      >
+                        MEDICATION
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseTwo"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingTwo"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        <div class="col-md-12 mb-3">
+                          <label class="form-label">Medication</label>
+                          <textarea
+                            class="form-control textarea"
+                            placeholder="Please Type Prescription Here"
+                            v-model="medication_des"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  -->
+                </div>
+ <p v-if="errorList.length">
                           <ul>
-                              <li style="color:red" v-for='err in errorList' :key='err'>{{ err }}</li>
-                          </ul>
-                      </p>
-                      <div class="d-flex">
-                          <button type="submit" class="next-1 btn btn-warning btn-text ml-auto" v-on:click="OnUpdateCompany">
-                              <i class="fa fa-save"></i> update
-                          </button>
-                      </div>
+                           <li style="color:red"  v-for='err in errorList' :key='err' >
+                           {{ err }}
+                             </li>
+                        </ul>
+                       </p>
+                       <br><br>
+                <div class="d-flex">
+                    <button
+                      @click="GoBack"
+                      class="btn btn-primary btn-text"
+                      ><i class="fa fa-arrow-alt-to-left"></i> Back
+                    </button>
+                    <div  class="btn-right" :class="SidebarAccess!=1?'hide':''" v-if="!pid">
+                    <button type="submit" @click="onCreateEvent()" class="btn btn-warning btn-text">
+                      <i class="fa fa-save"></i> Save as draft
+                    </button>
+
+                    <button type="submit" @click="onPublishEvent()" class="btn btn-success btn-text">
+                      <i class="fa fa-paper-plane"></i> Submit
+                    </button>
                   </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
   
-              <div class="container-fluid px-4">
-  
-                  <div class="card mb-4">
-                      <div class="page-title">
-                          <h1>Login Information</h1>
-                      </div>
-  
-                      <div class="card mb-4">
-                          <div class="card-body">
-                              <div class="ml-5">
-                                  <div class="row">
-                                      <div class="col-sm-5">
-                                          <div class="mb-3">
-                                              <label class="form-label">Email</label>
-                                              <input type="text" class="form-control" placeholder="Enter Email for login" v-model="email_login" disabled="true" />
-                                          </div>
-                                      </div>
-  
-                                      <div class="col-sm-5">
-                                          <div class="mb-3">
-                                              <label class="form-label">New Password</label>
-                                              <input type="text" class="form-control" placeholder="Enter New Password" v-model="newpwd_login" />
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <p v-if="errorList.length">
-                                      <ul>
-                                          <li style="color:red" v-for='err in errorList' :key='err'>{{ err }}</li>
-                                      </ul>
-                                  </p>
-                                  <div class="d-flex">
-                                      <button type="submit" class="next-1 btn btn-warning btn-text ml-auto" @click="onUpdatePassword">
-                                          <i class="fa fa-save"></i> update
-                                      </button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-  
-                  </div>
-              </div>
+        <div class="container-fluid px-4">
+
+<div class="card mb-4">
+    <div class="page-title">
+        <h1>Company Basic Information</h1>
+    </div>
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="mb-3">
+                        <label class="form-label">Company Name<small>*</small></label>
+                        <input type="text" class="form-control" placeholder="Enter Company Name" v-model="company_name" />
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="mb-3">
+                        <label class="form-label">Company Registration Number<small>*</small></label>
+                        <input type="text" class="form-control" placeholder="Enter Company Registration Number" v-model="company_registration_number" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="mb-3">
+                        <label class="form-label">Company Address</label>
+                        <input type="text" class="form-control mb-2" placeholder="Enter Street Address" name="" v-model="company_address_1" />
+                        <input type="text" class="form-control mb-2" placeholder="Enter Street Address" name="" v-model="company_address_2" />
+                        <input type="text" class="form-control mb-2" placeholder="Enter Street Address" name="" v-model="company_address_3" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="mb-3">
+                        <label class="form-label">State</label>
+                        <select v-model="state_id" class="form-select" aria-label="Default select example" @change="onSelectedState($event)">
+                            <option value="0">Select</option>
+                            <option v-for="st in StateList" v-bind:key="st.id" v-bind:value="st.id">
+                                {{ st.state_name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">City</label>
+                        <select v-model="city_id" @change="getPostcodeList($event)" class="form-select" aria-label="Default select example">
+                            <option value="0">Select</option>
+                            <option v-for="ct in CityList" v-bind:key="ct.city_name" v-bind:value="ct.city_name">
+                                {{ ct.city_name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">Postcode</label>
+                        <select v-model="postcode" class="form-select" aria-label="Default Select example">
+                            <option value="0">Select</option>
+                            <option v-for="ct in postcodelist" v-bind:key="ct.id" v-bind:value="ct.id">
+                                {{ ct.postcode }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3">
+                <label class="col-sm-4 col-form-label">Employment Sector</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Manufacturing" v-model="manufacturing" id="es-1" />
+                                <label class="form-check-label" for="es-1">
+                                    Manufacturing
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Oil and Gas" v-model="oil" id="es-2" />
+                                <label class="form-check-label" for="es-2">
+                                    Oil and Gas
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Education" v-model="education" id="es-3" />
+                                <label class="form-check-label" for="es-3">
+                                    Education
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Business" v-model="business" id="es-5" />
+                                <label class="form-check-label" for="es-5">
+                                    Business
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Information Technology" v-model="information" id="es-1" />
+                                <label class="form-check-label" for="es-1">
+                                    Information Technology
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Telecommunication" v-model="telecommunication" id="es-6" />
+                                <label class="form-check-label" for="es-6">
+                                    Telecommunication
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 es-box">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Building Contruction" v-model="building" id="es-8" />
+                                <label class="form-check-label" for="es-8">
+                                    Building Contruction
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Transportation" v-model="transportation" id="es-9" />
+                                <label class="form-check-label" for="es-9">
+                                    Transportation
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Service" v-model="service" id="es-10" />
+                                <label class="form-check-label" for="es-10">
+                                    Service
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Otheres" v-model="otheres" id="es-7" />
+                                <label class="form-check-label" for="es-7">
+                                    Others
+                                </label>
+                            </div>
+
+                            <div class="Otheres hide">
+                                <input type="text" placeholder="Please specify" class="form-control" v-model="other" name="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 mt-3">
+                <label class="col-sm-4 col-form-label">Corporate Body Sector</label>
+                <div class="col-sm-8 cbs-box">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Government Sector" v-model="government" id="cbs-1" />
+                        <label class="form-check-label" for="cbs-1">
+                            Government Sector
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Private Sector" v-model="privatesector" id="cbs-2" />
+                        <label class="form-check-label" for="cbs-2">
+                            Private Sector
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Small and Medium Enterprises (SME)" v-model="small" id="cbs-3" />
+                        <label class="form-check-label" for="cbs-3">
+                            Small and Medium Enterprises (SME)
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Othercbs" v-model="othercbs" id="cbs-5" />
+                        <label class="form-check-label" for="cbs-5">
+                            Others
+                        </label>
+                    </div>
+
+                    <div class="Othercbs hide">
+                        <input type="text" placeholder="Please specify" class="form-control" v-model="othersector" name="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3">
+                <div class="col-sm-4">
+                    <label class="form-label">Does your company have an existing training program in place?<small>*</small></label>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check form-check-inline col-sm-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" v-model="is_existing_training_program" />
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-2">
+                        <input value="0" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="is_existing_training_program" />
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="page-title">
+        <h1>Contact Information</h1>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="mb-3">
+                        <label class="form-label">Name<small>*</small></label>
+                        <input type="text" class="form-control" v-model="contact_name" />
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="mb-3">
+                        <label class="form-label">Position in Company<small>*</small></label>
+                        <input type="text" class="form-control" v-model="contact_position" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="mb-3">
+                        <label class="form-label">Contact Number<small>*</small></label>
+                        <input type="text" class="form-control" v-model="contact_number" />
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="mb-3">
+                        <label class="form-label">Email<small>*</small></label>
+                        <input type="text" class="form-control" v-model="contact_email" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <p v-if="errorList.length">
+        <ul>
+            <li style="color:red" v-for='err in errorList' :key='err'>{{ err }}</li>
+        </ul>
+    </p>
+    <div class="d-flex">
+        <button type="submit" class="next-1 btn btn-warning btn-text ml-auto" v-on:click="OnUpdateCompany">
+            <i class="fa fa-save"></i> update
+        </button>
+    </div>
+</div>
+</div>
           </main>
           <intervention-footer></intervention-footer>
       </div>
