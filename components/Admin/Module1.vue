@@ -3,7 +3,7 @@
     <form class="g-3 mt-3" method="post" @submit.prevent="onAddModule1">
       <div class="row mb-4 align-items-center">
         <div class="col-md-2">
-          <label for="" class="form-label">Code</label>
+          <label for="" class="form-label">Kod</label>
           <input
             type="text"
             class="form-control"
@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-md-4">
-          <label for="" class="form-label">Module Name</label>
+          <label for="" class="form-label">Nama Modul</label>
           <input
             type="text"
             class="form-control"
@@ -23,7 +23,7 @@
         </div>
 
         <div class="col-md-4">
-          <label for="" class="form-label">Module Short Name</label>
+          <label for="" class="form-label">Singkatan Modul</label>
           <input
             type="text"
             class="form-control"
@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-md-2">
-          <label for="" class="form-label">Index</label>
+          <label for="" class="form-label">Indeks</label>
           <input
             type="text"
             class="form-control"
@@ -52,10 +52,10 @@
         </p>
       <div class="d-flex justify-content-center" :class="SidebarAccess!=1?'hide':''">
         <button type="submit" class="btn btn-warning btn-text ml-auto" v-if="Id">
-        <i class="fa fa-save"></i> Save
+        <i class="fa fa-save"></i> Simpan
         </button>
          <button type="submit" class="btn btn-warning btn-text" v-if="!Id">
-          <i class="fa fa-plus"></i> Add Parameter
+          <i class="fa fa-plus"></i> Tambah Parameter
         </button>
       </div>
     </form>
@@ -63,17 +63,17 @@
 
 
     <div class="table-title">
-      <h3>List of Modules</h3>
+      <h3>Senarai Modul</h3>
     </div>
     <table class="table table-striped data-table4 font-13 display nowrap" style="width: 100%">
       <thead>
         <tr>
-          <th>No</th>
-          <th>Code</th>
-          <th>Module Name</th>
-          <th>Short Name</th>
-          <th>Index</th>
-          <th>Action</th>
+          <th>Bil</th>
+          <th>Kod</th>
+          <th>Nama Modul</th>
+          <th>Singkatan Modul</th>
+          <th>Indeks</th>
+          <th>Tindakan</th>
         </tr>
       </thead>
       <tbody>
@@ -128,28 +128,28 @@ export default {
       )
       .then((resp) => {
         this.modulelist = resp.data.list;
-        $(document).ready(function () {
-          $(".data-table4").DataTable({
-            searching: false,
-            bLengthChange: false,
-            bInfo: false,
-            // autoWidth: false,
-            // responsive: true,
-            scrollX: true,
-            language: {
-              paginate: {
-                next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
-                previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
-              },
-            },
-          });
-          $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
-            $($.fn.dataTable.tables(true))
-              .DataTable()
-              .columns.adjust()
-              .responsive.recalc();
-          });
-        });
+        //$(document).ready(function () {
+        //  $(".data-table4").DataTable({
+        //    searching: false,
+        //    bLengthChange: false,
+        //    bInfo: false,
+        //    // autoWidth: false,
+        //    // responsive: true,
+        //    scrollX: true,
+        //    language: {
+        //      paginate: {
+        //        next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
+        //        previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
+        //      },
+        //    },
+        //  });
+        //  $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
+        //    $($.fn.dataTable.tables(true))
+        //      .DataTable()
+        //      .columns.adjust()
+        //      .responsive.recalc();
+        //  });
+        //});
       })
       .catch ((err) => {
         this.loader = false;
@@ -172,16 +172,16 @@ export default {
       this.errors = [];
       try {
         if (!this.code) {
-          this.errors.push("Code is required.");
+          this.errors.push("Kod diperlukan.");
         }
         if (!this.name) {
-          this.errors.push("Module Name is required.");
+          this.errors.push("Nama Modul diperlukan.");
         }
         if (!this.shortname) {
-          this.errors.push("Module Short Name is required.");
+          this.errors.push("Singkatan Modul diperlukan.");
         }
         if (this.index <= 0) {
-          this.errors.push("Index is required.");
+          this.errors.push("Indeks diperlukan.");
         } else {
           const headers = {
             Authorization: "Bearer " + this.userdetails.access_token,
@@ -202,7 +202,7 @@ export default {
               { headers }
             );
             if (response.data.code == 200 || response.data.code == "200") {
-              this.$swal.fire('Successfully Update', '', 'success');
+              this.$swal.fire('Berjaya disimpan', '', 'berjaya');
               this.resetmodel();
             } else {
               this.$swal.fire({
@@ -228,7 +228,7 @@ export default {
             );
             if (response.data.code == 200 || response.data.code == "200") {
 this.$swal.fire(
-                  'Successfully Update',
+                  'Berjaya dikemaskini',
                 );
               this.resetmodel();
             } else {
@@ -308,7 +308,7 @@ this.$swal.fire(
           { headers }
         );
         if (response.data.code == 200) {
-          this.$swal.fire('Deleted Successfully', '', 'success');
+          this.$swal.fire('Rekod berjaya dipadam', '', 'berjaya');
           this.GetModuleList();
         } else {
           this.$swal.fire({
