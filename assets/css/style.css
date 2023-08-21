@@ -60,7 +60,7 @@ ul {
 }
 
 .navbar-brand img {
-    width: 80%;
+    width: 60%;
     padding: 0;
 }
 
@@ -1034,7 +1034,7 @@ form.step-form.accordion-form {
 }
 
 /*.border-top-left{
-    border-radius: 10px;  
+    border-radius: 10px;
 }*/
 .add-box {
     display: flex;
@@ -3252,7 +3252,7 @@ input:focus-visible {
 }
 
 .login-bg {
-    background: url(../images/login.png);
+    background: url(../images/sfv_login2.png);
     background-size: cover;
 }
 
@@ -3264,7 +3264,7 @@ input:focus-visible {
 
 /* .bg-login-2{
   background: url(../images/e-login.png);
-        background-size: cover;  
+        background-size: cover;
 } */
 /*14-4-2020*/
 
@@ -3877,7 +3877,7 @@ table.dataTable.nowrap td {
 .title-th{
     color: #000;
     font-weight: 500;
-    font-size: 14px;   
+    font-size: 14px;
 }
 
 .btn-deactivate {
@@ -3953,7 +3953,7 @@ table.dataTable.nowrap td {
     .flex-table th {
         margin-bottom: 5px;
     }
-    
+
 }
 
 @media (max-width: 991px) {
@@ -4155,7 +4155,7 @@ table.dataTable.nowrap td {
     display: flex;
     margin-bottom: 10px;
     }
-   
+
     .flex-table td table tr th, .flex-table td table tr td {
         padding: 0px;
         word-break: break-all;
@@ -4456,7 +4456,7 @@ table.dataTable.nowrap td {
         border-radius: 0px;
         min-height: 100vh;
     }
-    
+
     .btn-footer .ml-auto{
         flex-wrap: wrap;
     }

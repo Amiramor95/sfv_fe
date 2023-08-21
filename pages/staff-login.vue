@@ -1,12 +1,12 @@
 <template>
   <div class="bg-login bg-login-1">
     <div class="row login-box">
-      <img src="~/assets/images/mentari.png" />
-      <h4>Staff Login</h4>
+      <img src="~/assets/images/logo-pentadbir-sfv2.png" />
+      <h4>Login Pentadbir</h4>
       <Loader v-if="loader" />
       <form method="post" @submit.prevent="login">
         <div class="mb-3">
-          <label for="inputEmail">User ID</label>
+          <label for="inputEmail">ID Pentadbir</label>
           <input
             class="form-control"
             id="inputEmail"
@@ -16,9 +16,9 @@
         </div>
 
         <div class="mb-3 password">
-          <label for="inputPassword">Password</label>
+          <label for="inputPassword">Kata Laluan</label>
           <a class="small ml-auto forgot-password" href="/app/forget-password"
-            >Forgot Password?</a
+            >Terlupa Kata Laluan?</a
           >
           <input
             class="form-control"
