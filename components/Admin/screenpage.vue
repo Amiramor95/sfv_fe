@@ -3,10 +3,10 @@
     <form class="g-3 mt-3" method="post" @submit.prevent="onAddscreen">
       <div class="row mb-4">
         <div class="col-md-6">
-          <label for="" class="form-label">Module</label>
+          <label for="" class="form-label">Modul</label>
           <select v-model="ModuleId" class="form-select" aria-label="Default select example"
             @change="onsubmodelbind($event)">
-            <option value="0">Please Select</option>
+            <option value="0">Pilih</option>
             <option v-for="mod in modulelist" v-bind:key="mod.id" v-bind:value="mod.id">
               {{ mod.module_name }}
             </option>
@@ -14,9 +14,9 @@
         </div>
 
         <div class="col-md-6" v-show="IsSubmodule">
-          <label for="" class="form-label">Sub Module</label>
+          <label for="" class="form-label">Sub Modul</label>
           <select v-model="SubmoduleId" class="form-select" aria-label="Default select example">
-            <option value="0">Please Select</option>
+            <option value="0">Pilih</option>
             <option v-for="submod in submodulelist" v-bind:key="submod.id" v-bind:value="submod.id">
               {{ submod.sub_module_name }}
             </option>
@@ -26,29 +26,29 @@
 
       <div class="row mb-4">
         <div class="col-md-6">
-          <label for="" class="form-label">Screen Name</label>
-          <input type="text" class="form-control" placeholder="Enter Screen Name" v-model="screenname" />
+          <label for="" class="form-label">Nama Skrin</label>
+          <input type="text" class="form-control" placeholder="Masukkan Nama Skrin" v-model="screenname" />
         </div>
 
         <div class="col-md-6">
-          <label for="" class="form-label">Page Route</label>
-          <input type="text" class="form-control" placeholder="Enter Page Route" v-model="pageroute" />
+          <label for="" class="form-label">Laluan Skrin(Page Route)</label>
+          <input type="text" class="form-control" placeholder="Masukkan Laluan Halaman" v-model="pageroute" />
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6">
-          <label for="" class="form-label">Description</label>
-          <input type="text" class="form-control" placeholder="Enter Description" v-model="description" />
+          <label for="" class="form-label">Perincian</label>
+          <input type="text" class="form-control" placeholder="Masukkan Perincian" v-model="description" />
         </div>
         <div class="col-md-6">
           <label for="" class="form-label">Icon</label>
-          <input type="text" class="form-control" placeholder="Enter Icon" v-model="icon" />
+          <input type="text" class="form-control" placeholder="Masuk Icon" v-model="icon" />
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-md-6">
-          <label for="" class="form-label">Index</label>
-          <input type="text" class="form-control" placeholder="Enter Index" v-model="index" />
+          <label for="" class="form-label">Indeks</label>
+          <input type="text" class="form-control" placeholder="Masukkan Indeks" v-model="index" />
         </div>
       </div>
       <p v-if="errors.length">
@@ -60,26 +60,26 @@
       </p>
       <div class="d-flex justify-content-center" :class="SidebarAccess != 1 ? 'hide' : ''">
         <button type="submit" class="btn btn-warning btn-text ml-auto" v-if="Id">
-          <i class="fa fa-save"></i> Save
+          <i class="fa fa-save"></i> Simpan
         </button>
         <button type="submit" class="btn btn-warning btn-text" v-if="!Id">
-          <i class="fa fa-plus"></i> Add Parameter
+          <i class="fa fa-plus"></i> Tambah Parameter
         </button>
       </div>
     </form>
     <div class="table-title">
-      <h3>List of Modules</h3>
+      <h3>Senarai Skrin</h3>
     </div>
     <table class="table table-striped data-table6 font-13 display nowrap" style="width: 100%">
       <thead>
         <tr>
-          <th>No</th>
-          <th>Module</th>
-          <th>Sub Module</th>
-          <th>Screen Name</th>
-          <th>Page Route</th>
-          <th>Description</th>
-          <th width="80px">Action</th>
+          <th>Bil</th>
+          <th>Modul</th>
+          <th>Sub Modul</th>
+          <th>Nama Skrin</th>
+          <th>Laluan Skrin</th>
+          <th>Perincian</th>
+          <th width="80px">Tindakan</th>
         </tr>
       </thead>
       <tbody>
@@ -155,7 +155,7 @@ export default {
       IsSubmodule: true,
       SidebarAccess: null,
       loader: false,
-      message: "The screen route has already been taken.",
+      message: "Rekod telah Wujud.",
     };
   },
   mounted() {
@@ -175,20 +175,20 @@ export default {
         this.list = resp.data.list;
         this.loader = false;
         $(document).ready(function () {
-          $(".data-table6").DataTable({
-            searching: false,
-            bLengthChange: false,
-            bInfo: false,
-            // autoWidth: false,
-            // responsive: true,
-            scrollX: true,
-            language: {
-              paginate: {
-                next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
-                previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
-              },
-            },
-          });
+          //$(".data-table6").DataTable({
+          //  searching: false,
+          //  bLengthChange: false,
+          //  bInfo: false,
+          //  // autoWidth: false,
+          //  // responsive: true,
+          //  scrollX: true,
+          //  language: {
+          //    paginate: {
+          //      next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
+          //      previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
+          //    },
+          //  },
+          //});
           $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
             $($.fn.dataTable.tables(true))
               .DataTable()
@@ -240,22 +240,22 @@ export default {
       this.errors = [];
       try {
         if (this.ModuleId <= 0) {
-          this.errors.push("Module is required.");
+          this.errors.push("Modul diperlukan.");
         }
         if (!this.screenname) {
-          this.errors.push("Screen Name is required.");
+          this.errors.push("Nama skrin diperlukan.");
         }
         if (!this.pageroute) {
-          this.errors.push("Page Route is required.");
+          this.errors.push("Laluan skrin diperlukan.");
         }
         if (!this.description) {
-          this.errors.push("Description is required.");
+          this.errors.push("Perincian diperlukan.");
         }
         if (!this.icon) {
-          this.errors.push("Icon is required.");
+          this.errors.push("Icon diperlukan.");
         }
         if (!this.index) {
-          this.errors.push("Index is required.");
+          this.errors.push("Indeks diperlukan.");
         }
         if (
           this.ModuleId &&
@@ -319,9 +319,8 @@ export default {
             console.log(response.data.message);
             if (response.data.code == 200 || response.data.code == "200") {
               this.$swal.fire(
-              'Successfully Submitted.',
-              'Data is inserted.',
-              'success',
+              'Berjaya disimpan.',
+              'berjaya',
               )
               this.resetmodel();
             } else {
@@ -435,7 +434,7 @@ export default {
         );
         console.log("my delete resp", response.data);
         if (response.data.code == 200) {
-          this.$swal.fire('Successfully Delete', '', 'success');
+          this.$swal.fire('Rekod berjaya dipadamkan', '', 'berjaya');
           this.GetList();
         } else {
             this.message = JSON.stringify(response.data.message);
