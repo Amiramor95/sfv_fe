@@ -1,7 +1,7 @@
 <template>
   <div class="bg-login bg-login-2">
     <div class="row login-box">
-      <img src="~/assets/images/mentari.png" />
+      <img src="~/assets/images/logo-pentadbir-sfv.png" />
       <h4>Employer Login</h4>
       <Loader v-if="loader" />
       <form method="post" @submit.prevent="login">
