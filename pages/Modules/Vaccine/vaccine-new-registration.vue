@@ -74,8 +74,17 @@
                             </tr>
                           </tbody>
                         </table>
+                        <br>
+                        <div class="d-flex">
+                        <div  class="btn-right">
+                          <button type="submit" @click="" class="btn btn-warning btn-text">
+                            <i class="fa fa-save"></i> Simpan Draft
+                          </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    
                   </div>
                   <!--  -->
                   <div class="accordion-item">
@@ -106,9 +115,18 @@
                             v-model="medication_des"
                           ></textarea>
                         </div>
+                        <br>
+                        <div class="d-flex">
+                        <div  class="btn-right">
+                          <button type="submit" @click="" class="btn btn-warning btn-text">
+                            <i class="fa fa-save"></i> Simpan Draft
+                          </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <!--  -->
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                       <button
@@ -124,7 +142,7 @@ EVALUATION </span>)
                       </button>
                     </h2>
                     <div
-                      id="collapseTwo"
+                      id="collapseThree"
                       class="accordion-collapse collapse"
                       aria-labelledby="headingThree"
                       data-bs-parent="#accordionExample"
@@ -139,25 +157,34 @@ EVALUATION </span>)
                           ></textarea>
                         </div>
                       </div>
+                      <br>
+                        <div class="d-flex">
+                        <div  class="btn-right">
+                          <button type="submit" @click="" class="btn btn-warning btn-text">
+                            <i class="fa fa-save"></i> Simpan Draft
+                          </button>
+                          </div>
+                        </div>
                     </div>
                   </div>
+                  <!--  -->
                   <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
+                    <h2 class="accordion-header" id="headingFour">
                       <button
                         class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
+                        data-bs-target="#collapseFour"
                         aria-expanded="false"
-                        aria-controls="collapseThree"
+                        aria-controls="collapseFour"
                       >
                       BAHAGIAN IV: PRODUK SIAP (<span style="font-style:italic;color: grey;font-size: small;">PART IV: FINISHED PRODUCT </span>)
                       </button>
                     </h2>
                     <div
-                      id="collapseTwo"
+                      id="collapseFour"
                       class="accordion-collapse collapse"
-                      aria-labelledby="headingThree"
+                      aria-labelledby="headingFour"
                       data-bs-parent="#accordionExample"
                     >
                       <div class="accordion-body">
@@ -170,6 +197,14 @@ EVALUATION </span>)
                           ></textarea>
                         </div>
                       </div>
+                      <br>
+                        <div class="d-flex">
+                        <div  class="btn-right">
+                          <button type="submit" @click="" class="btn btn-warning btn-text">
+                            <i class="fa fa-save"></i> Simpan Draft
+                          </button>
+                          </div>
+                        </div>
                     </div>
                   </div>
                   <!--  -->
@@ -179,13 +214,9 @@ EVALUATION </span>)
                     <button
                       @click=""
                       class="btn btn-primary btn-text"
-                      ><i class="fa fa-arrow-alt-to-left"></i> Back
+                      ><i class="fa fa-arrow-alt-to-left"></i> Kembali
                     </button>
                     <div  class="btn-right">
-                    <button type="submit" @click="" class="btn btn-warning btn-text">
-                      <i class="fa fa-save"></i> Simpan Draft
-                    </button>
-
                     <button type="submit" @click="" class="btn btn-warning btn-text ml-auto">
                       <i class="fa fa-paper-plane"></i> Simpan & Hantar Permohonan
                     </button>
