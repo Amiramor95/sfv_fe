@@ -1,12 +1,12 @@
 <template>
   <div class="bg-login bg-login-1">
     <div class="row login-box">
-      <img src="~/assets/images/logo-pentadbir-sfv2.png" />
+      <img src="~/assets/images/logo-main1.png" />
       <h4>Login Pentadbir</h4>
       <Loader v-if="loader" />
       <form method="post" @submit.prevent="login">
         <div class="mb-3">
-          <label for="inputEmail">ID Pentadbir</label>
+          <label for="inputEmail">ID Pengguna</label>
           <input
             class="form-control"
             id="inputEmail"

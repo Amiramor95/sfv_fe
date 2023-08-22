@@ -16,8 +16,9 @@
             <div class="card-body">
               <div class="search-table">
                 <div class="row mt-2">
-                  <!-- <div class="col-lg-4 col-sm-6 mb-3">
-                    <select
+                  <div class="col-lg-4 col-sm-6 mb-3">
+                    <span></span>
+                    <!-- <select
                       v-if="dataReady"
                       disabled
                       v-model="branchId"
@@ -49,11 +50,11 @@
                       >
                         {{ brnch.hospital_branch_name }}
                       </option>
-                    </select>
-                  </div> -->
+                    </select> -->
+                  </div>
 
                   <div class="col-lg-4 col-sm-6 mb-3">
-                    <div class="input-group">
+                    <div class="input-group" style="position : relative; left: 100%;">
                       <span class="input-group-text bg-transparent br-0"
                         ><i class="fa fa-search"></i
                       ></span>
@@ -221,7 +222,7 @@
                     class="btn btn-success"
                     @click="OnPrint"
                   >
-                    <i class="fa fa-print"></i> Print List
+                    <i class="fa fa-print"></i> Cetak Senarai
                   </button>
                 </div>
               </div>
@@ -621,5 +622,10 @@ h4.form-sub-title {
 }
 .hide {
   display: none !important;
+}
+
+.my-custom-class{
+  /* position: absolute; */
+  right: 0;
 }
 </style>

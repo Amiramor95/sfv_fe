@@ -1,7 +1,7 @@
 <template>
   <div class="bg-login">
     <div class="login-box">
-      <img src="~/assets/images/logo-pentadbir-sfv.png" />
+      <img src="~/assets/images/logo-main1.png" />
       <div class="text">
         <h3>Welcome Back!</h3>
         <p>Please Log in to your account.</p>
