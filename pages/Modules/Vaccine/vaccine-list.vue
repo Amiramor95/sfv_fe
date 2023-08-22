@@ -46,24 +46,27 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(patint, index) in list" :key="index">
-                      <td>{{ index + 1 }}</td>
-                      <td>{{ patint.patient_mrn }}</td>
-                      <td>{{ patint.salutation }}</td>
-                      <td>
-                        <a
-                          style="color: #18846f; cursor: pointer"
-                          @click="oneditPatient(patint.id)"
-                          >{{ patint.name_asin_nric }}</a
-                        >
-                      </td>
-                      <td>{{ patint.age }}</td>
-                      <td>{{ patint.nric_no }}</td>
-                      <td>{{ patint.appointments }}</td>
+                    <tr>
+                      <td>1</td>
+                      <td>13-08-2023</td>
+                      <td>VAKSI JENIS 2</td>
+                      <td>NURUL SAADAH BINTI MOHD SHARIFF</td>
+                      <td>13-08-2023</td>
+                      <td>DIKEMBALIKAN</td>
+                      <td style="width: 5px;align-items: center;"> <a class="edit" @click="oneditPatient()"><i class="fa fa-edit"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>10-04-2021</td>
+                      <td>VAKSI JENIS 1</td>
+                      <td>NURUL SAADAH BINTI MOHD SHARIFF</td>
+                      <td>10-06-2023</td>
+                      <td>DALAM PENILAIAN</td>
+                      <td> <a class="view" @click="oneditPatient()"><i class="fa fa-eye"></i></a></td>
                     </tr>
                   </tbody>
                 </table>
-                <p
+                <!--<p
                   v-show="!list.length"
                   style="
                     padding: 0px;
@@ -74,7 +77,7 @@
                   "
                 >
                   Tiada Rekod ditemui
-                </p>
+                </p>-->
               </div>
             </div>
           </div>

@@ -90,7 +90,7 @@
           <td>{{ scn.screen_name }}</td>
           <td>{{ scn.screen_route }}</td>
           <td>{{ scn.screen_description }}</td>
-          <td class="td" :class="SidebarAccess != 1 ? 'hide' : ''">
+          <td class="td">
             <a class="edit" @click="editsscreen(scn)"><i class="fa fa-edit"></i></a>
             <a @click="deletescreen(scn)" class="action-icon icon-danger"><i class="fa fa-trash-alt"></i></a>
           </td>
