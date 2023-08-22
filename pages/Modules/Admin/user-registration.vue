@@ -84,18 +84,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(staff,index) in list" :key="index">
-                    <td>{{ index+1}}</td>
-                    <td>{{ staff.name }}</td>
-                    <td>{{staff.role_name}}</td>
-                    <td>{{ staff.designation_name }}</td>
-                  
-                    <td>{{staff.service_name}}</td>
-                    <td><a v-if="staff.status == '1'">Active</a><a v-else-if="staff.status == '0'">Inactive</a></td>
-                    <td>
-                      <a @click="view(staff)" class="view" title="view staff profile"><em class="fa fa-eye"></em></a>
-                      <a class="view" @click="Onview(staff)" title="view user matrix"><em class="fa fa-bars"></em></a>
-                    </td>
+                  <tr>
+                    <th>1</th>
+                    <th>ABDUL HAQIM BIN OSMAN</th>
+                    <th>Pemohon</th>
+                    <th>Pemohon</th>
+                    <th>pemohon@gmail.com</th>
+
+                    <th>Aktif</th>
+                    <th style="width:8%">Action</th>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <th>ABDUL HAQIM BIN OSMAN</th>
+                    <th>Pemohon</th>
+                    <th>Pemohon</th>
+                    <th>pemohon@gmail.com</th>
+
+                    <th>Aktif</th>
+                    <th style="width:8%">Action</th>
                   </tr>
                 </tbody>
               </table>

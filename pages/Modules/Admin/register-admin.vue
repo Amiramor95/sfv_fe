@@ -78,13 +78,33 @@
                     <th>Peranan</th>
                     <th>ID Pengguna</th>
                     <th>Emel</th>
-                    
+
                     <th>Status</th>
                     <th style="width:8%">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(staff,index) in list" :key="index">
+                  <tr>
+                    <th>1</th>
+                    <th>NURUL SAADAH BINTI MOHD SHARIFF</th>
+                    <th>Pentadbir</th>
+                    <th>Admin</th>
+                    <th>admin@gmail.com</th>
+
+                    <th>Aktif</th>
+                    <th style="width:8%">Action</th>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <th>NURUL SAADAH BINTI MOHD SHARIFF</th>
+                    <th>Pentadbir</th>
+                    <th>Admin</th>
+                    <th>admin@gmail.com</th>
+
+                    <th>Aktif</th>
+                    <th style="width:8%">Action</th>
+                  </tr>
+                  <!-- <tr v-for="(staff,index) in list" :key="index">
                     <td>{{ index+1}}</td>
                     <td>{{ staff.name }}</td>
                     <td>{{staff.role_name}}</td>
@@ -96,7 +116,7 @@
                       <a @click="view(staff)" class="view" title="view staff profile"><em class="fa fa-eye"></em></a>
                       <a class="view" @click="Onview(staff)" title="view user matrix"><em class="fa fa-bars"></em></a>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
               </div>
