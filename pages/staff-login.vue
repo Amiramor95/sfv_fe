@@ -2,7 +2,7 @@
   <div class="bg-login bg-login-1">
     <div class="row login-box">
       <img src="~/assets/images/logo-main1.png" />
-      <h4>Login Pentadbir</h4>
+      <h4></h4>
       <Loader v-if="loader" />
       <form method="post" @submit.prevent="login">
         <div class="mb-3">
