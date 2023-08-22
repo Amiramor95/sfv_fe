@@ -34,7 +34,7 @@
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Enter Name"
+                          placeholder="Nama Penuh"
                           v-model="name"
                           v-on:keypress="isLetter($event)"
                         />
@@ -46,7 +46,7 @@
                           type="text"
                           :maxlength="12"
                           class="form-control"
-                          placeholder="Enter NRIC NO"
+                          placeholder="No. Kad Pengenalan"
                           v-model="nricno"
                           v-on:keypress="NumbersOnly"
 
@@ -147,7 +147,7 @@
                       <!-- close-row -->
 
                       <div class="row">
-                      <div class="col-md-6 mb-4">
+                      <!-- <div class="col-md-6 mb-4">
                         <label for="" class="form-label"
                           >ID Pengguna<span style="color:red">*</span></label
                         >
@@ -168,7 +168,7 @@
                             v-model="password"
                           />
 
-                      </div>
+                      </div> -->
                       <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="" class="form-label">Jenis Pemilik<span style="color:red">*</span></label>
@@ -176,7 +176,6 @@
                           class="form-select"
                           aria-label="Default select example">
                           <option value="0">Sila Pilih</option>
-
                           <option></option>
                         </select>
                       </div>

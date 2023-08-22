@@ -78,7 +78,7 @@
                     <th>Peranan</th>
                     <th>ID Pengguna</th>
                     <th>Emel</th>
-                    <th></th>
+                    
                     <th>Status</th>
                     <th style="width:8%">Action</th>
                   </tr>
@@ -89,7 +89,7 @@
                     <td>{{ staff.name }}</td>
                     <td>{{staff.role_name}}</td>
                     <td>{{ staff.designation_name }}</td>
-                    <td>{{ staff.hospital_branch_name }}</td>
+
                     <td>{{staff.service_name}}</td>
                     <td><a v-if="staff.status == '1'">Active</a><a v-else-if="staff.status == '0'">Inactive</a></td>
                     <td>
