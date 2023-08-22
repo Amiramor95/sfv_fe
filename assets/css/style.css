@@ -3115,7 +3115,9 @@ input:focus-visible {
 }
 
 .login-screen img {
-    width: 200px;
+    display: center;
+    align-items: center;
+    width: 225px;
     margin-bottom: 20px;
 }
 

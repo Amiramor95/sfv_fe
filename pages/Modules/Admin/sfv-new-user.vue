@@ -6,7 +6,7 @@
       <main>
         <div class="container-fluid px-4">
           <div class="page-title">
-            <h1>Pengurusan Pentadbir</h1>
+            <h1>Pengurusan Pengguna</h1>
             <!-- <a href="#"><i class="fal fa-plus"></i> Add</a> -->
           </div>
           <div class="row">
@@ -16,7 +16,7 @@
                 <ul id="nav-tab" role="tablist" class="nav sub-tab">
                   <li class="nav-item">
                     <a data-bs-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home" aria-selected="true" class="nav-link active">
-                     Daftar Pentadbir Baharu</a>
+                     Daftar Pengguna Baru</a>
                   </li>
                   </ul>
                   </nav>
@@ -30,18 +30,18 @@
                   >
                     <div class="row">
                       <div class="col-md-6 mb-4">
-                        <label for="" class="form-label">Nama Penuh<span style="color:red">*</span></label>
+                        <label for="" class="form-label">Nama Penuh Pemohon<span style="color:red">*</span></label>
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Isi Nama Penuh"
+                          placeholder="Enter Name"
                           v-model="name"
                           v-on:keypress="isLetter($event)"
                         />
                       </div>
 
-                      <!-- <div class="col-md-4 mb-4">
-                        <label for="" class="form-label">NRIC No.<span style="color:red">*</span></label>
+                      <div class="col-md-4 mb-4">
+                        <label for="" class="form-label">No. Kad Pengenalan Pemohon<span style="color:red">*</span></label>
                         <input
                           type="text"
                           :maxlength="12"
@@ -52,7 +52,55 @@
 
                         />
                          <Error :message="nricerror" v-if="nricerror" />
-                      </div> -->
+                      </div>
+
+                    </div>
+                    <!-- close-row -->
+
+                    <div class="row">
+
+                          <div class="col-md-6 mb-4">
+                            <label for="" class="form-label">Alamat Lengkap Pemohon</label>
+                            <input type="text" class="form-control mb-3" placeholder="Alamat Lengkap" v-model="BranchAddress1" />
+
+                            <input type="text" class="form-control mb-3" placeholder="Alamat Lengkap" v-model="BranchAddress2" />
+
+                            <input type="text" class="form-control" placeholder="Alamat Lengkap" v-model="BranchAddress3" />
+                          </div>
+
+                          <div class="col-md-6">
+          <label for="" class="form-label">Negeri</label>
+          <select v-model="State" class="form-select" aria-label="Default select example" @change="onCitybind($event)">
+            <option value="0">Sila Pilih</option>
+            <option v-for="state in StateList" v-bind:key="state.id" v-bind:value="state.id">
+              {{ state.state_name }}
+            </option>
+          </select>
+
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <label for="" class="form-label">Bandar</label>
+              <select v-model="City" class="form-select" aria-label="Default select example"
+                @change="onPostbind($event)">
+                <option value="0">Sila Pilih</option>
+                <option v-for="ctl in CityList" v-bind:key="ctl.city_name" v-bind:value="ctl.city_name">
+                  {{ ctl.city_name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="" class="form-label">Poskod</label>
+              <select v-model="PostCode" class="form-select" aria-label="Default select example">
+                <option value="0">Sila Pilih</option>
+                <option v-for="pst in PostCodeList" v-bind:key="pst.id" v-bind:value="pst.id">
+                  {{ pst.postcode }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
 
                     </div>
                     <!-- close-row -->
@@ -68,27 +116,37 @@
                           @blur="validateEmail"
                         />
                       </div>
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label">Peranan<span style="color:red">*</span></label>
-                        <select
-                          v-model="roleId"
-                          class="form-select"
-                          aria-label="Default select example"
-                        >
-                        <option value="0">Sila Pilih</option>
-                          <option
-                            v-for="role in rolelist"
-                            v-bind:key="role.id"
-                            v-bind:value="role.id"
-                          >
-                            {{ role.role_name }}
-                          </option>
-                        </select>
+                      <div class="col-md-3 mb-4">
+                        <label for="" class="form-label">No. Telefon<span style="color:red">*</span></label>
+                        <input
+                          type="text"
+                          :maxlength = "11"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="form-control"
+                          placeholder="Isi No. Telefon."
+                          v-model="contactno"
+                          v-on:keypress="NumbersOnly"
+                        />
                       </div>
-                    </div>
-                    <!-- close-row -->
+                      <div class="col-md-3 mb-4">
+                        <label for="" class="form-label">Peranan<span style="color:red">*</span></label>
 
-                    <div class="row">
+                        <input
+                          type="text"
+                          :maxlength = "11"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="form-control"
+
+                          v-model="rolelist2"
+                          v-on:keypress="NumbersOnly"
+                          disabled
+                        />
+
+                      </div>
+                      </div>
+                      <!-- close-row -->
+
+                      <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="" class="form-label"
                           >ID Pengguna<span style="color:red">*</span></label
@@ -111,145 +169,23 @@
                           />
 
                       </div>
+                      <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <label for="" class="form-label">Jenis Pemilik<span style="color:red">*</span></label>
+                        <select
+                          class="form-select"
+                          aria-label="Default select example">
+                          <option value="0">Sila Pilih</option>
+
+                          <option></option>
+                        </select>
+                      </div>
+                      </div>
+
                     </div>
                     <!-- close-row -->
 
-                    <!-- <div class="row">
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label">Designation<span style="color:red">*</span></label>
-                        <select
-                          v-model="designationId"
-                          class="form-select"
-                          aria-label="Default select example"
-                        >
-                        <option value="0">Please Select</option>
-                          <option
-                            v-for="des in designationlist"
-                            v-bind:key="des.id"
-                            v-bind:value="des.id"
-                          >
-                            {{ des.section_value }}
-                          </option>
-                        </select>
-                      </div>
 
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label"
-                          >Designation Period(Start Date)<span style="color:red">*</span></label
-                        >
-                        <input
-                          type="date"
-                          class="form-control"
-                          v-model="designationstartdate"
-                        />
-                      </div>
-
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label"
-                          >Designation Period(End Date)</label
-                        >
-                        <input
-                          type="date"
-                          class="form-control"
-                          v-model="designationenddate"
-                        />
-                      </div>
-                    </div> -->
-                    <!-- close-row -->
-
-                    <!-- <div class="row">
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label"
-                          >Location<span style="color:red">*</span></label
-                        >
-                        <select
-                          v-model="branchId"
-                          class="form-select"
-                          aria-label="Default select example"
-                          @change="onSelectBranch($event)"
-                        >
-                        <option value="0">Please Select</option>
-                          <option
-                            v-for="brnch in branchlist"
-                            v-bind:key="brnch.id"
-                            v-bind:value="brnch.id"
-
-                          >
-                            {{ brnch.hospital_branch_name }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label">Team<span style="color:red">*</span></label>
-                        <select
-                          v-model="teamId"
-                          class="form-select"
-                          aria-label="Default select example"
-                        >
-                        <option value="0">Please Select</option>
-                          <option
-                            v-for="team in teamlist"
-                            v-bind:key="team.id"
-                            v-bind:value="team.id"
-                          >
-                            {{ team.service_name }}
-                          </option>
-                        </select>
-                      </div>
-                    </div> -->
-                    <!-- close-row -->
-
-                    <!-- <div class="row">
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label">Start Date<span style="color:red">*</span></label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          v-model="startdate"
-                        />
-                      </div>
-
-                      <div class="col-md-4 mb-4">
-                        <label for="" class="form-label">End Date</label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          v-model="enddate"
-                        />
-                      </div>
-
-                      <div class="col-md-4 mb-4">
-                        <label for="formFile" class="form-label"
-                          >Supported Document<span style="color:red">*</span></label
-                        >
-                        <input
-                          class="form-control"
-                          type="file"
-                          id="formFile"
-                          style="line-height: 32px"
-                            @change="selectFile"
-                        />
-                      </div>
-                    </div> -->
-                    <!-- <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="flexCheckDefault"
-                            v-model="personincharge"
-                          />
-                          <label
-                            class="form-check-label"
-                            for="flexCheckDefault"
-                          >
-                            Set As Person In Charge Mentari
-                          </label>
-                        </div>
-                      </div>
-                    </div> -->
                     <!-- close-row -->
  <p v-if="errors.length">
 <ul>
@@ -263,7 +199,7 @@
         <br>
                     <div class="form-foter mt-3">
                       <a
-                        href="/app/modules/Admin/register-admin"
+                        href="/app/modules/Admin/staff-management"
                         class="btn btn-primary btn-text"
                         ><i class="fa fa-arrow-alt-to-left"></i> Kembali</a
                       >
@@ -310,6 +246,7 @@ export default {
       file: null,
       userdetails: null,
       rolelist: [],
+      rolelist2: '',
       teamlist: [],
       designationlist: [],
       branchlist: [],
@@ -341,6 +278,8 @@ export default {
         headers,
       });
       this.rolelist = response.data.list;
+      this.rolelist2 = response.data.list2[0].role_name;
+      this.roleId = response.data.list2[0].id;
     },
     async GetteamList(branchId) {
       const headers = {
