@@ -38,27 +38,27 @@
                             <tr>
                               <th>Nama Penuh Pemohon <br> <span style="font-style:italic;color: grey;font-size: smaller;">Full Name of Applicant </span></th>
                               <td style="width: 2%;">:</td>
-                              <td>NURUL SAADAH BINTI MOHD SHARIFF</td>
+                              <td>{{ this.applicant_name }}</td>
                             </tr>
                             <tr>
                               <th>Nombor Kad Pengenalan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Identification Card (IC) Number of Applicant</span></th>
                               <td>:</td>
-                              <td>890408-03-5256</td>
+                              <td>{{ this.applicant_nric }}</td>
                             </tr>
                             <tr>
                               <th>Alamat<br> <span style="font-style:italic;color: grey;font-size: smaller;">Address</span> </th>
                               <td>:</td>
-                              <td>NO 53,Jalan Kajang Perdana 2/5, Taman Kajang Perdana, 43000 Kajang</td>
+                              <td>{{ this.address1 }} {{ this.address2 }} {{ this.postcode }} {{ this.city }} {{ this.state }}</td>
                             </tr>
                             <tr>
                               <th>Nama Pengilang Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine Manufacturer</span> </th>
                               <td>:</td>
-                              <td>ABC Manufacture</td>
+                              <td>{{ this.manufacturer_name }}</td>
                             </tr>
                             <tr>
                               <th>Nombor Pendaftaran Pengilang Vaksin Yang telah didaftarkan oleh DVS<br> <span style="font-style:italic;color: grey;font-size: smaller;">DVS Manufacturer Registration Number</span> </th>
                               <td>:</td>
-                              <td>M100023</td>
+                              <td>{{ this.dvs_manufacturer }}</td>
                             </tr>
                             <tr>
                               <th>Nama Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine</span> </th>
@@ -1177,17 +1177,53 @@ latest 3 consecutive batches.
       data() {
           return {
               userdetails: null,
-
               loader: false,
+              applicant_name: "",
+              applicant_nric: "",
+              address1: "",
+              address2: "",
+              postcode: "",
+              state: "",
+              city: "",
+              manufacturer_name: "",
+              dvs_manufacturer: "",
 
           };
       },
       beforeMount() {
           this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+          this.getList();
 
       },
       methods: {
+        async getList(){
+          const headers = {
+            Authorization: "Bearer " + this.userdetails.access_token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          };
+          const response = await this.$axios.post(
+            "staff-management/getUserListByEmail",
+            { email: this.userdetails.user.email},
+            {
+              headers,
+            }
+          );
+          if (response.data.code == 200 || response.data.code == "200") {
+            this.applicant_name = response.data.list[0].name;
+            this.applicant_nric = response.data.list[0].nric_no;
+            this.address1 = response.data.list[0].address_1;
+            this.address2 =response.data.list[0].address_2;
+            this.postcode =response.data.list[0].poscode;
+            this.state = response.data.list[0].state;
+            this.city = response.data.list[0].city;
+            this.manufacturer_name = response.data.list[0].name_vacs_manufacturer;
+            this.dvs_manufacturer = response.data.list[0].reg_num_vacs_manufacturer;
 
+          } else {
+            window.alert("no data");
+          }
+        },
 
       },
   };
