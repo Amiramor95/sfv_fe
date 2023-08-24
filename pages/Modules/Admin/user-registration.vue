@@ -57,7 +57,9 @@
                     <td>{{ staff.email }}</td>
                     <td><a v-if="staff.status == '1'">Aktif</a><a v-else-if="staff.status == '0'">Tidak Aktif</a></td>
                     <td>
-                      <a @click="view(staff.id)" class="view" title="view user profile"><em class="fa fa-eye"></em></a>
+                      <a @click="view(staff.id)" class="view" title="View User Profile"><em class="fa fa-eye"></em></a>
+                      <a @click="edit(staff.id)" class="view" title="Edit User Profile"><em class="fa fa-edit"></em></a>
+                      <a @click="remove(staff.id)" class="view" title="Delete User Profile"><em class="fa fa-trash"></em></a>
                     </td>
                   </tr>
                 </tbody>
@@ -110,6 +112,7 @@
 <script>
 import CommonHeader from '../../../components/CommonHeader.vue';
 import CommonSidebar from '../../../components/CommonSidebar.vue';
+import Swal from 'sweetalert2';
 export default {
   components: { CommonSidebar, CommonHeader },
   name: "staff-management",
@@ -167,6 +170,53 @@ export default {
         path: "/modules/Admin/view-sfv-user",
         query: { id: data },
       });
+    },
+
+    async edit(data) {
+      this.$router.push({
+        path: "/modules/Admin/edit-sfv-user",
+        query: { id: data },
+      });
+    },
+    async remove(data) {
+      Swal.fire({
+      title: 'Adakah Anda Pasti?',
+      text: "Perubahan Tidak Boleh Dibatalkan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Setuju!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+          this.removeUser(data);
+        Swal.fire(
+          'Dipadamkan!',
+          'Rekod Pengguna Telah Dipadamkan.',
+          'Success'
+        )
+      }
+    })
+    },
+
+    async removeUser(data) {
+      const headers = {
+        Authorization: "Bearer " + this.userdetails.access_token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
+      const response = await this.$axios.post(
+        "staff-management/UserRemove",
+        { id: data},
+        {
+          headers,
+        }
+      );
+      if (response.data.code == 200 || response.data.code == "200") {
+        this.list = response.data.list;
+      } else {
+        this.list = [];
+      }
     },
 
     async onnamechange(event) {
