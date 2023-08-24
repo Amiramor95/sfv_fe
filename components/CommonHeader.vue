@@ -110,14 +110,14 @@ export default {
       this.name=this.userdetails.user.name;
       this.id=this.userdetails.user.id;
       this.email=this.userdetails.user.email;
-      this.role=this.userdetails.user.role;
-      this.branch_id=this.userdetails.branch.branch_id;
+      // this.role=this.userdetails.user.role;
+      // this.branch_id=this.userdetails.branch.branch_id;
       this.route_alt=this.userdetails.route;
     }
 
   },
   mounted() {
-    this.GetNotificationList();
+    //this.GetNotificationList();
     },
    methods: {
     async Logout() {
@@ -144,22 +144,22 @@ export default {
       }
     },
 
-    async RemoveNotification(notifi) {
-      const headers = {
-        Authorization: "Bearer " + this.userdetails.access_token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-      console.log('my notification',notifi.url_route);
-      const response = await this.$axios.post("Notification/delete",
-      {notifi_id:notifi.id},
-       { headers });
-      if (response.data.code == 200 || response.data.code == "200") {
-          this.$router.push(notifi.url_route);
-      } else {
-        this.notificationlist = [];
-      }
-    },
+    // async RemoveNotification(notifi) {
+    //   const headers = {
+    //     Authorization: "Bearer " + this.userdetails.access_token,
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   };
+    //   console.log('my notification',notifi.url_route);
+    //   const response = await this.$axios.post("Notification/delete",
+    //   {notifi_id:notifi.id},
+    //    { headers });
+    //   if (response.data.code == 200 || response.data.code == "200") {
+    //       this.$router.push(notifi.url_route);
+    //   } else {
+    //     this.notificationlist = [];
+    //   }
+    // },
 
 
     getFormattedDate(date) {
