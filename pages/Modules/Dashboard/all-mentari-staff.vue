@@ -6,11 +6,7 @@
             <main>
                 <div class="container-fluid px-4 dashboard">
                     <div class="page-title dashboard-title">
-                        <h1>All Mentari Staff</h1>
-                        <div class="input-group dashboard-search">
-                            <span class="input-group-text" id="basic-addon1"><i type="button" v-on:click="SearchPatient" class="fa fa-search"></i></span>
-                            <input type="text" class="form-control" v-model="search"  placeholder="Search By Name/NRIC/Passport/MRN"/>
-                        </div>
+                        <h1>DASHBOARD</h1>
                     </div>
                      <div class="row">
                         <div class="col-sm-6 mb-3">
@@ -19,7 +15,7 @@
                                     <img src="~/assets/images/schedule.png">
                                     <div class="text">
                                         <h1>{{ todays_appointments }}</h1>
-                                        <p>TODAY'S APPOINTMENT</p>
+                                        <p>Jumlah Permohonan Vaksin</p>
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +26,7 @@
                                     <img src="~/assets/images/man.png">
                                     <div class="text">
                                         <h1>{{ personal_task }}</h1>
-                                        <p>PERSONAL TASK</p>
+                                        <p>Jumlah Pengguna</p>
                                     </div>
                                 </div>
                             </div>
@@ -41,72 +37,21 @@
                                     <img src="~/assets/images/team.png">
                                     <div class="text">
                                         <h1>{{ team_task }}</h1>
-                                        <p>TEAM TASK</p>
+                                        <p>Jumlah Admin Pentadbir</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- row -->
 
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
-                            <div class="card">
-                                <div class="card-header dashboard-header">
-                                    <h4>Upcoming Review for Patient Care Plan :</h4>
-                                </div>
-                                <table class="announcement-table" >
-                                    <tbody>
-                                        <tr>
-                                            <div v-if="index < review_patient.length" v-for="(ann,index) in AnnouncmentToShow" :key="index">
-                                                    <td><span class="number">{{ index+1 }}</span></td>
-                                                    <td><a v-bind:href="review_route+ review_patient[ann-1].id+'&type=view'">{{ review_patient[ann-1].name_asin_nric }} ({{ getFormattedDate(review_patient[ann-1].next_review_date) }})</a></td>
-                                            </div>
-                                            <div v-if="AnnouncmentToShow< review_patient.length || review_patient.length > AnnouncmentToShow">
-                                                    <button class="btn btn-primary btn-text btn-seeall" @click="AnnouncmentToShow += 5">Show More</button>
-                                            </div>
-                                        </tr>
-                                        <!-- <tr>
-                                            <td><span class="number">02</span></td>
-                                            <td>Hari Kesihatan Mental</td>
-                                        </tr> -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 mb-3">
-                            <div class="card">
-                                <div class="card-header dashboard-header">
-                                    <h4>Patient Clinical Documentation in Draft Status  :</h4>
-                                </div>
-                                <table class="announcement-table" >
-                                    <tbody>
-                                        <tr>
-                                            <div v-if="index < cd_draft.length" v-for="(ann,index) in AnnouncmentToShow" :key="index">
-                                                    <td><span class="number">{{ index+1 }}</span></td>
-                                                    <td><a v-bind:href="cd_draft[ann-1].route">{{ cd_draft[ann-1].name }} ({{ getFormattedDate(cd_draft[ann-1].updated_at) }})</a></td>
-                                            </div>
-                                            <div v-if="AnnouncmentToShow< cd_draft.length || cd_draft.length > AnnouncmentToShow">
-                                                    <button class="btn btn-primary btn-text btn-seeall" @click="AnnouncmentToShow += 5">Show More</button>
-                                            </div>
-                                        </tr>
-                                        <!-- <tr>
-                                            <td><span class="number">02</span></td>
-                                            <td>Hari Kesihatan Mental</td>
-                                        </tr> -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- row -->
+          
 
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card mt-4 mb-3">
                                 <div class="card-header dashboard-header">
-                                    <h4>ANNOUNCEMENT:</h4>
+                                    <h4>PENGUMUMAN:</h4>
                                 </div>
                                 <table class="announcement-table">
                                     <tbody>
@@ -162,14 +107,14 @@ export default {
         if(this.userdetails){
       this.id=this.userdetails.user.id;
       this.email=this.userdetails.user.email;
-      this.branch=this.userdetails.branch.branch_id;
+    //   this.branch=this.userdetails.branch.branch_id;
       this.name=this.userdetails.user.name;
-      this.branch_name=this.userdetails.branch.hospital_branch_name;
+    //   this.branch_name=this.userdetails.branch.hospital_branch_name;
 
     }
     },
     mounted(){
-      this.Getrecord();
+      //this.Getrecord();
 
 
     },

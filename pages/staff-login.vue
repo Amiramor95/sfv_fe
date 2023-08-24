@@ -123,7 +123,7 @@ export default {
         console.log("my error", e);
         console.log("api not working");
         this.loader = false;
-        this.emailerror = "Email and Password does not match"; //$user.message.email; //e.response.data.message;
+        this.emailerror = "ID Pengguna atau Kata Laluan Tidak Sah"; //$user.message.email; //e.response.data.message;
       }
       console.log("my data", this.userdetail);
     },
