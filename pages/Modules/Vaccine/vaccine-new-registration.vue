@@ -22,7 +22,7 @@
                         aria-controls="collapseOne">
                         BAHAGIAN I : MAKLUMAT PENGURUSAN (<span style="font-style:italic;color: grey;font-size: small;">PART I: ADMINISTRATIVE INFORMATION </span>)
                       </button>
-                        
+
                     </h2>
                     <div
                       id="collapseOne"
@@ -200,10 +200,10 @@
                           </tbody>
                         </table>
                         <br>
-                        
+
                       </div>
                     </div>
-                    
+
                   </div>
                   <!--  -->
                   <div class="accordion-item">
@@ -268,7 +268,7 @@
                                   class="form-control"
                                   type="file"
                                   id="formFileResultIdentityMaster" @change=""/>
-                                 
+
                               </td>
                             </tr>
                             <tr>
@@ -285,7 +285,7 @@
                                   <input
                                   class="form-control"
                                   type="file"
-                                  id="formFileResultIdentityMaster" @change=""/> 
+                                  id="formFileResultIdentityMaster" @change=""/>
                               </td>
                             </tr>
                             <tr>
@@ -299,7 +299,7 @@
                                   type="file"
                                   id="formFileSopLot" @change=""/>
                                   <br>
-                                
+
                               </td>
                             </tr>
                             <tr>
@@ -314,7 +314,7 @@
                                   type="file"
                                   id="formFileCoaAttachment" @change=""/>
                                   <br>
-                                
+
                               </td>
                             </tr>
                             <tr>
@@ -346,7 +346,7 @@
                             </tr>
                           </tbody>
                         </table>
-                       
+
                       </div>
                     </div>
                   </div>
@@ -439,6 +439,7 @@
                                       Multivalent
                                     </label>
                                 </div>
+                                <br>
                                 c) Form
                                 <div class="form-check">
                                     <input
@@ -461,23 +462,437 @@
                                       @click=""
                                     />
                                     <label class="form-check-label" for="form2">
-                                      frozen
+                                      Frozen
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="form3"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form2">
+                                      Emulsion
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="form4"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form2">
+                                      Suspension
+                                    </label>
+                                </div>
+                                <br>
+                                d) Technology of Vaccine
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="vaccine1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form1">
+                                      Whole Cell Vaccine
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="vaccine1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form1">
+                                      Recombinant Vaccine
+                                    </label>
+                                </div>
+                                    <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="vaccine1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form1">
+                                      Virus Vector Vaccine
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="vaccine1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form1">
+                                      DNA Vaccine
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="vaccine1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form1">
+                                      Subunit Vaccine
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="vaccine1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="form1">
+                                      Peptide Vaccine
                                     </label>
                                 </div>
                               </td>
+                            </tr>
+                            <tr>
+                              <th>Salinan sijil perlepasan untuk 3 batch terkini<br> <span style="font-style:italic;color: grey;font-size: smaller;">Copy of assay certificate or certificate of release for
+latest 3 consecutive batches.
+</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Komposisi Kimia<br> <span style="font-style:italic;color: grey;font-size: smaller;">Chemical compositions & safety test (chemical starting materials used as adjuvant/stabilizer/preservative)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Senaraikan
+                                <br>-Please list of chemical used and safety report
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Kandungan kelembapan<br><span style="font-style:italic;color: grey;font-size: smaller;">Moisture contents (for Lyophilised vaccine)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan SOP & COA
+                                <br>-Please Attach written SOP & COA
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Vakum <br><span style="font-style:italic;color: grey;font-size: smaller;">Vacuum (for Lyophilised vaccine)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan SOP & COA
+                                <br>-Please Attach written SOP & COA
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Kestabilan emulsi <br><span style="font-style:italic;color: grey;font-size: smaller;">Emulsion stability ( if applicable)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan SOP & COA
+                                <br>-Please Attach written SOP & COA
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Kelikatan Vaksin <br><span style="font-style:italic;color: grey;font-size: smaller;">Viscosity of vaccine (if applicable)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan SOP & COA
+                                <br>-Please Attach written SOP & COA
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                             <tr>
+                            <th> Pengujian ketulenan <br><span style="font-style:italic;color: grey;font-size: smaller;">Purity test (for live vaccines)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan SOP & COA
+                                <br>-Please Attach written SOP & COA
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Pengujian steril (QC) <br><span style="font-style:italic;color: grey;font-size: smaller;">Sterility tests (QC)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan SOP & COA
+                                <br>-Please Attach written SOP & COA
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                              <td colspan="3" style="color: black;font-weight: bold;">Seksyen B (Keselamatan)/Section B (Safety)</td>
+                            </tr>
+                            <tr>
+                            <th> Komposisi produk akhir <br><span style="font-style:italic;color: grey;font-size: smaller;">Composition of the final product (vaccine and diluent)
+                              <br>-levels of toxic components
+                              <br>-list of each component in FP packaging</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>  Keselamatan Vaksin <br><span style="font-style:italic;color: grey;font-size: smaller;">Vaccine Safety</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with safety report
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>  Pengujian innocuiti <br><span style="font-style:italic;color: grey;font-size: smaller;">Innocuity tests</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th> Proses melemahkan vaksin<br><span style="font-style:italic;color: grey;font-size: smaller;">Vaccine Attenuation process (for live/ attenuated vaccine)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Pengembalian kepada virulensi (LV) / kajian back passage<br><span style="font-style:italic;color: grey;font-size: smaller;">Reversion to virulence (LV) / back passage study</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Proses penyahaktifan vaksin<br><span style="font-style:italic;color: grey;font-size: smaller;">Vaccine inactivation process (for killed vaccine/inactivated antigens)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Penentuan margin keselamatan kinetik penyahaktifan<br><span style="font-style:italic;color: grey;font-size: smaller;">Inactivation kinetic safety margin determination</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Pengujian immunosupresi<br><span style="font-style:italic;color: grey;font-size: smaller;">Immunosuppression Test (if applicable)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Pengujian inaktif residu<br><span style="font-style:italic;color: grey;font-size: smaller;">Residual inactivant test (for killed+live vaccine)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with test result
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                              <td colspan="3" style="color: black;font-weight: bold;">Seksyen C (Efikasi) /Section B (Efficacy) </td>
+                            </tr>
+                            <tr>
+                            <th>Potency /Challenge test <br><span style="font-style:italic;color: grey;font-size: smaller;">Potency (Efficacy) </span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Ujian imunogenisiti <br><span style="font-style:italic;color: grey;font-size: smaller;">Immunogenicity test</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Ujian imunogenisiti <br><span style="font-style:italic;color: grey;font-size: smaller;">Immunogenicity test</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Dos imunogenik minimum<br><span style="font-style:italic;color: grey;font-size: smaller;">Minimum immunogenic dose (Procedure for determination minimum dose (MID) / Probit analysis)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Kajian lapangan<br><span style="font-style:italic;color: grey;font-size: smaller;">Field trials <br>-Field trials are conducted in 3 farms in different (3) locations with complete address </span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach study report with technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Tahap Imun dan tempoh di dalam hos<br><span style="font-style:italic;color: grey;font-size: smaller;">Immune level and duration in intended host</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Tahap Imun dan tempoh di dalam progeny<br><span style="font-style:italic;color: grey;font-size: smaller;">Immune level and duration in progeny (maternal derived antibody-passive immunity) if applicable</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Pengujian kestabilan<br><span style="font-style:italic;color: grey;font-size: smaller;">Stability test</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach written SOP with report/technical data
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Jangka hayat<br><span style="font-style:italic;color: grey;font-size: smaller;">Shelf life </span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
                             </tr>
                           </tbody>
                         </table>
 
                       </div>
                       <br>
-                        <div class="d-flex">
-                        <div  class="btn-right">
-                          <button type="submit" @click="" class="btn btn-warning btn-text">
-                            <i class="fa fa-save"></i> Simpan Draft
-                          </button>
-                          </div>
-                        </div>
+
                     </div>
                   </div>
                   <!--  -->
@@ -500,24 +915,226 @@
                       aria-labelledby="headingFour"
                       data-bs-parent="#accordionExample"
                     >
-                      <div class="accordion-body">
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label">Medication</label>
-                          <textarea
-                            class="form-control textarea"
-                            placeholder="Please Type Prescription Here"
-                           
-                          ></textarea>
-                        </div>
-                      </div>
+                    <div class="accordion-body">
+                     <table class="notes">
+                      <tbody>
+                            <tr>
+                              <td colspan="3" style="color: black;font-weight: bold;">Seksyen A (Rejim Vaksinasi)/Seksyen A (Rejim Vaksinasi)</td>
+                            </tr>
+                            <tr>
+                            <th>Risiko meggunakan vaksin bergantung kepada strain atau teknologi pembuatan vaksin<br><span style="font-style:italic;color: grey;font-size: smaller;">Risk of application of the vaccine based on strain used or type of manufacturing technology (Category II &III of Biotech vaccine) <br>- Safe to host, human or environment </span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Jadual pemvaksinan<br><span style="font-style:italic;color: grey;font-size: smaller;">Vaccinating schedule</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Kumpulan sasaran<br><span style="font-style:italic;color: grey;font-size: smaller;">Target age/group</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Pencair<br><span style="font-style:italic;color: grey;font-size: smaller;">Diluent  <br>- Name of diluent </span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Nyatakan dan Lampirkan COA
+                                <br>-Please specify & attach COA
+                               <input type="text" v-model="diluent" class="form-control" style="width: 100%;"><br>
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Dos dan cara pemvaksinan<br><span style="font-style:italic;color: grey;font-size: smaller;">Dosage and route of vaccination</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan
+                                <br>-Please Attach
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                              <td colspan="3" style="color: black;font-weight: bold;">Seksyen B (Maklumat Pembungkusan)/Section B (Packaging Information)</td>
+                            </tr>
+                            <tr>
+                              <th>Maklumat Asas<br> <span style="font-style:italic;color: grey;font-size: smaller;">General information</span> </th>
+                              <td>:</td>
+                              <td>
+                                a. Isi isipadu/berat bekas<br><span style="font-style:italic;color: grey;font-size: smaller;">Fill volume/ weight of container </span>
+                                <input type="text" v-model="diluent" rows="2" class="form-control">
+                                <br>
+                                b. Jenis bekas<br><span style="font-style:italic;color: grey;font-size: smaller;">Type of container</span>
+                                <input type="text" v-model="diluent" rows="2" class="form-control">
+                                <br>
+                                c. Bahan yang digunakan bagi bekas primer<br><span style="font-style:italic;color: grey;font-size: smaller;">Material of the primary container</span>
+                                <input type="text" v-model="diluent" rows="2" class="form-control"><br>
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  <br>
+                                d. Jenis dan bahan penyumbat<br><span style="font-style:italic;color: grey;font-size: smaller;">Type and material of stopper</span>
+                                <input type="text" v-model="diluent" rows="2" class="form-control"><br>
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  <br>
+                              </td>
+                            </tr>
+                            <tr>
+                            <th>Maklumat label dan risalah<br><span style="font-style:italic;color: grey;font-size: smaller;">Label information (all below information shall available on the product’s label and  pamphlet)<br></span>
+                            a. Nama Produk<br><span style="font-style:italic;color: grey;font-size: smaller;">Product Name<br></span>
+                            b. Strain<br><span style="font-style:italic;color: grey;font-size: smaller;">Strain<br></span>
+                            c. Dos setiap pakej <br><span style="font-style:italic;color: grey;font-size: smaller;">Doses per package<br></span>
+                            d. Maklumat pengeluar<br><span style="font-style:italic;color: grey;font-size: smaller;">Manufactured by<br></span>
+                            e. No. batch/siri , tarikh pembuatan dan tamat tempoh<br><span style="font-style:italic;color: grey;font-size: smaller;">Batch/serial number, manufacturing and expiry date<br></span>
+                            f. Spesis yang disasarkan<br><span style="font-style:italic;color: grey;font-size: smaller;">Target sepsis<br></span>
+                            g. Syarat penyimpanan<br><span style="font-style:italic;color: grey;font-size: smaller;">Storage condition<br></span>
+                            h. *Indikasi dan kontraindikasi<br><span style="font-style:italic;color: grey;font-size: smaller;">Indications and contra-indications<br></span>
+                            i. *Kesan sampingan dan langkah berjaga-jaga<br><span style="font-style:italic;color: grey;font-size: smaller;">Side effects and precautions (human & animals<br></span></th>
+                              <td>:</td>
+                              <td>
+                                a. Label asal/sebenar
+                                <br>-Original label
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  <br>b. Label dicetak
+                                  <br>-Printed label
+                                  <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  <br>c. Risalah
+                                  <br>-Pamphlet
+                                  <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <tr>
+                            <th>Gambar produk <br>(dengan pembungkusan berbeza –jika ada)<br><span style="font-style:italic;color: grey;font-size: smaller;">Photo of product ( with different packaging – if available)</span> </th>
+                              <td>:</td>
+                              <td>
+                                Sila Lampirkan maklumat berkenaan  (Muat naik)
+                                <br>-Please Attach (Upload)
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                  </td>
+                            </tr>
+                            <br>
+                            <tr>
+                              <td colspan="3" style="color: black;font-weight: bold;">Seksyen C (Dokumen Sokongan & Maklumat Lain)/Section C (Other Information & Supporting Documents)</td>
+                            </tr>
+                            <tr>
+                              <th>Pilih & Sila Lampirkan maklumat berkenaan<br>(dengan pembungkusan berbeza –jika ada)<br><span style="font-style:italic;color: grey;font-size: smaller;">Choose any and Attach File</span> </th>
+                                <td>: </td>
+                                <td>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="type1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="type1">
+                                      Pharmacopeia
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="type1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="type1">
+                                      ASEAN Standard
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="type1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="type1">
+                                      VICH (Veterinary International Cooperation on <br>Harmonization of Technical Requirement for <br>Registration of Veterinary Medicinal Products)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="type1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="type1">
+                                      OIE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="type1"
+                                      @click=""
+                                    />
+                                    <label class="form-check-label" for="type1">
+                                      Journal
+                                    </label>
+                                </div>
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFileProductionOutline" @change=""/>
+                                </td>
+
+                            </tr>
+                      </tbody>
+                     </table>
+                    </div>
                       <br>
-                        <div class="d-flex">
-                        <div  class="btn-right">
-                          <button type="submit" @click="" class="btn btn-warning btn-text">
-                            <i class="fa fa-save"></i> Simpan Draft
-                          </button>
-                          </div>
-                        </div>
                     </div>
                   </div>
                   <!--  -->
@@ -547,7 +1164,7 @@
       </div>
   </div>
   </template>
-  
+
   <script>
   import CommonHeader from '../../../components/CommonHeader.vue';
   import CommonSidebar from '../../../components/CommonSidebar.vue';
@@ -560,29 +1177,28 @@
       data() {
           return {
               userdetails: null,
-            
+
               loader: false,
-             
+
           };
       },
       beforeMount() {
           this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
-          
+
       },
       methods: {
-         
-          
+
+
       },
   };
   </script>
-  
+
   <style scoped>
   .hide {
       display: none;
   }
-  
+
   #nav-tab a {
       pointer-events: none;
   }
   </style>
-  
