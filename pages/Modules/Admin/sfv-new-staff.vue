@@ -7,7 +7,6 @@
         <div class="container-fluid px-4">
           <div class="page-title">
             <h1>Pengurusan Pentadbir</h1>
-            <!-- <a href="#"><i class="fal fa-plus"></i> Add</a> -->
           </div>
           <div class="row">
             <div class="card mb-4">
@@ -316,14 +315,14 @@ export default {
       errors: [],
       nricerror: null,
       SidebarAccess: null,
+      password: "",
+      professionregno: "",
     };
   },
   beforeMount() {
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.SidebarAccess = JSON.parse(localStorage.getItem("SidebarAccess"));
     this.GetroleList();
-    this.GetbranchList();
-    this.GetdesignationList();
   },
   mounted() {
     if (this.SidebarAccess != 1) {
@@ -375,24 +374,6 @@ export default {
         this.branchlist = [];
       }
     },
-    async GetdesignationList() {
-      const headers = {
-        Authorization: "Bearer " + this.userdetails.access_token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-      const response = await this.$axios.get(
-        "general-setting/list?section=" + "designation",
-        {
-          headers,
-        }
-      );
-      if (response.data.code == 200 || response.data.code == "200") {
-        this.designationlist = response.data.list;
-      } else {
-        this.designationlist = [];
-      }
-    },
     selectFile(event) {
       this.file = event.target.files[0];
     },
@@ -416,67 +397,37 @@ export default {
         if (!this.name) {
           this.errors.push("Name is required.");
         }
-        if (!this.nricno) {
-          this.errors.push("NRIC NO is required.");
-        }
 
         if (this.roleId <= 0) {
           this.errors.push("Role  is required.");
         }
+        if(this.emailerror){
+          this.errors.push(this.emailerror);
+        }
         if (!this.email) {
           this.errors.push("Email is required.");
         }
-        if (this.teamId <= 0) {
-          this.errors.push("Team  is required.");
+        if(!this.professionregno){
+          this.errors.push("User ID is required");
         }
-        if (!this.contactno) {
-          this.errors.push("Contact NO is required.");
-        }
-        if (this.designationId <= 0) {
-          this.errors.push("Designation  is required.");
-        }
-        if (!this.designationstartdate) {
-          this.errors.push("Designation Period(Start Date) is required.");
-        }
-        if (this.branchId <= 0) {
-          this.errors.push("Mentari Location is required.");
-        }
-        if (!this.startdate) {
-          this.errors.push("Start Date is required.");
-        }
-        if (!this.file) {
-          this.errors.push("Supported Document is required.");
+
+        if(!this.password){
+          this.errors.push("Password is required");
         }
 
         console.log(
-          "this.name && this.nricno &&  this.Role && this.email &&this.teamId && this.contactno && this.designationId && this.designationstartdate && this.designationenddate &&this.branchId && this.startdate && this.enddate && !this.nricerror",
           this.name,
-          this.nricno,
-          this.Role,
+          this.roleId,
           this.email,
-          this.teamId,
-          this.contactno,
-          this.designationId,
-          this.designationstartdate,
-          this.designationenddate,
-          this.branchId,
-          this.startdate,
-          this.enddate,
-          !this.nricerror
         );
         if (
           (this.name &&
-          this.nricno &&
           this.roleId &&
-          this.email &&
-          this.teamId &&
-          this.contactno &&
-          this.designationId &&
-          this.designationstartdate &&
-          this.branchId &&
-          this.startdate &&
-          this.file &&
-          !this.nricerror)
+          this.email && 
+          this.professionregno &&
+          this.password &&
+          !this.emailerror
+          )
         ) {
           if (this.personincharge > 0) {
             this.personincharge = 1;
@@ -491,24 +442,12 @@ export default {
           body.append("added_by", this.userdetails.user.id);
           body.append("name", this.name);
           body.append("nric_no", this.nricno);
-          body.append("registration_no", this.professionregno);
           body.append("role_id", this.roleId);
           body.append("email", this.email);
-          body.append("team_id", this.teamId);
-          body.append("branch_id", this.branchId);
-          body.append("contact_no", this.contactno);
-          body.append("designation_id", this.designationId);
-          body.append("is_incharge", this.personincharge);
-          body.append(
-            "designation_period_start_date",
-            this.designationstartdate
-          );
-          body.append("designation_period_end_date", this.designationenddate);
-          body.append("start_date", this.startdate);
-          body.append("end_date", this.enddate);
-          body.append("document", this.file);
+          body.append("id_user", this.professionregno);
+          body.append("password", this.password);
           const response = await this.$axios.post(
-            "staff-management/addstaff",
+            "staff-management/AdminAdd",
             body,
             {
               headers,
@@ -521,7 +460,7 @@ export default {
                                 'Data is inserted.',
                                 'success',
                               );
-            this.$router.push("/Modules/Admin/staff-management");
+            this.$router.push("/Modules/Admin/register-admin");
           } else {
             this.loader = false;
 
