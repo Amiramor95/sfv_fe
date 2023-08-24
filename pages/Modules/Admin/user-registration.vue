@@ -57,7 +57,7 @@
                     <td>{{ staff.email }}</td>
                     <td><a v-if="staff.status == '1'">Aktif</a><a v-else-if="staff.status == '0'">Tidak Aktif</a></td>
                     <td>
-                      <a @click="view(staff)" class="view" title="view staff profile"><em class="fa fa-eye"></em></a>
+                      <a @click="view(staff.id)" class="view" title="view user profile"><em class="fa fa-eye"></em></a>
                     </td>
                   </tr>
                 </tbody>
@@ -164,8 +164,8 @@ export default {
     },
     async view(data) {
       this.$router.push({
-        path: "/modules/Admin/staff-view",
-        query: { id: data.id },
+        path: "/modules/Admin/view-sfv-user",
+        query: { id: data },
       });
     },
 
