@@ -29,27 +29,27 @@
                                                     <label for="" class="form-label">Nama Penuh Pemohon<span style="color:red">*</span></label>
                                                     <input type="text" class="form-control" placeholder="Nama Penuh" v-model="name" v-on:keypress="isLetter($event)" />
                                                 </div>
-    
+
                                                 <div class="col-md-4 mb-4">
                                                     <label for="" class="form-label">No. Kad Pengenalan Pemohon<span style="color:red">*</span></label>
                                                     <input type="text" :maxlength="12" class="form-control" placeholder="No. Kad Pengenalan" v-model="nricno" v-on:keypress="NumbersOnly" />
                                                     <Error :message="nricerror" v-if="nricerror" />
                                                 </div>
-    
+
                                             </div>
                                             <!-- close-row -->
-    
+
                                             <div class="row">
-    
+
                                                 <div class="col-md-6 mb-4">
                                                     <label for="" class="form-label">Alamat Lengkap Pemohon</label>
                                                     <input type="text" class="form-control mb-3" placeholder="Alamat Lengkap" v-model="BranchAddress1" />
-    
+
                                                     <input type="text" class="form-control mb-3" placeholder="Alamat Lengkap" v-model="BranchAddress2" />
-    
+
                                                     <input type="text" class="form-control" placeholder="Alamat Lengkap" v-model="BranchAddress3" />
                                                 </div>
-    
+
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">Negeri</label>
                                                     <select v-model="State" class="form-select" aria-label="Default select example" @change="onCitybind($event)">
@@ -58,7 +58,7 @@
                                                             {{ state.state_name }}
                                                         </option>
                                                     </select>
-    
+
                                                     <div class="row mt-4">
                                                         <div class="col-md-6">
                                                             <label for="" class="form-label">Bandar</label>
@@ -69,7 +69,7 @@
                                                                 </option>
                                                             </select>
                                                         </div>
-    
+
                                                         <div class="col-md-6">
                                                             <label for="" class="form-label">Poskod</label>
                                                             <select v-model="PostCode" class="form-select" aria-label="Default select example">
@@ -81,10 +81,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-    
+
                                             </div>
                                             <!-- close-row -->
-    
+
                                             <div class="row">
                                                 <div class="col-md-6 mb-4">
                                                     <label for="" class="form-label">Alamat Emel<span style="color:red">*</span></label>
@@ -96,13 +96,13 @@
                                                 </div>
                                                 <div class="col-md-3 mb-4">
                                                     <label for="" class="form-label">Peranan<span style="color:red">*</span></label>
-    
+
                                                     <input type="text" :maxlength="11" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" v-model="rolelist2" v-on:keypress="NumbersOnly" disabled />
-    
+
                                                 </div>
                                             </div>
                                             <!-- close-row -->
-    
+
                                             <div class="row">
                                                 <!-- <div class="col-md-6 mb-4">
                             <label for="" class="form-label"
@@ -124,7 +124,7 @@
                                 placeholder="Isi Kata Laluan"
                                 v-model="password"
                               />
-    
+
                           </div> -->
                                                 <div class="row">
                                                     <div class="col-md-6 mb-4">
@@ -139,22 +139,22 @@
                                                         </select>
                                                     </div>
                                                 </div>
-    
+
                                                 <div class="row">
                                                     <div class="col-md-6 mb-4">
                                                         <label for="" class="form-label">Nama Kilang<span style="color:red">*</span></label>
                                                         <input type="text" class="form-control" placeholder="Isi Nama Kilang" v-model="factory_name" />
                                                     </div>
-    
+
                                                     <div class="col-md-6 mb-4">
                                                         <label for="" class="form-label">Alamat Kilang<span style="color:red">*</span></label>
                                                         <input type="text" class="form-control" placeholder="Isi Alamat Kilang" v-model="factory_addr" />
                                                     </div>
                                                 </div>
-    
+
                                             </div>
                                             <!-- close-row -->
-    
+
                                             <!-- close-row -->
                                             <p v-if="errors.length">
                                                 <ul>
@@ -166,7 +166,7 @@
                                             <br>
                                             <br>
                                             <div class="form-foter mt-3">
-                                                <a href="/app/modules/Admin/staff-management" class="btn btn-primary btn-text"><i class="fa fa-arrow-alt-to-left"></i> Kembali</a>
+                                                <a href="/app/modules/Admin/user-registration" class="btn btn-primary btn-text"><i class="fa fa-arrow-alt-to-left"></i> Kembali</a>
                                                 <div class="ml-auto" id="hidebutton" ref="hidebutton">
                                                     <button type="submit" class="btn btn-warning btn-text">
                                                         <i class="fa fa-save"></i> Simpan
@@ -176,7 +176,7 @@
                                         </form>
                                     </div>
                                 </div>
-    
+
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
         </div>
     </div>
     </template>
-    
+
     <script>
     import CommonHeader from "../../../components/CommonHeader.vue";
     import CommonSidebar from "../../../components/CommonSidebar.vue";
@@ -300,7 +300,7 @@
                 this.rolelist_id = response.data.list2[0].id;
               },
             async onCreateStaff() {
-    
+
                 this.$swal.fire({
                     title: 'Are you sure to save this?',
                     text: "You won't be able to revert this!",
@@ -386,7 +386,7 @@
                             body.append("address_3", this.BranchAddress3);
                             body.append("state", this.State);
                             body.append("city", this.City);
-                            body.append("postcode", this.PostCode);
+                            body.append("poscode", this.PostCode);
                             body.append("email", this.email);
                             body.append("role_id", this.rolelist_id);
                             body.append("contact_no", this.contactno);
@@ -406,10 +406,10 @@
                                     'Data is inserted.',
                                     'success',
                                 );
-                                this.$router.push("/Modules/Admin/staff-management");
+                                this.$router.push("/Modules/Admin/user-registration");
                             } else {
                                 this.loader = false;
-    
+
                                 this.$swal.fire({
                                     icon: 'error',
                                     title: 'Oops... Something Went Wrong!',
@@ -420,7 +420,7 @@
                     }
                 })
             },
-    
+
             async validateEmail() {
                 if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(this.email)) {
                     this.emailerror = null;
@@ -434,7 +434,7 @@
                 if (/^[A-Za-z\'@ ]+$/.test(char)) return true;
                 else e.preventDefault();
             },
-    
+
             NumbersOnly(evt) {
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -444,7 +444,7 @@
                     return true;
                 }
             },
-    
+
             async CheckNric(event) {
                 console.log("my body", event.target.value);
                 const headers = {
@@ -469,7 +469,7 @@
         },
     };
     </script>
-    
+
     <style scoped>
     .hide {
         display: none !important;
