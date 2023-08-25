@@ -45,7 +45,7 @@
                     <th>Emel</th>
 
                     <th>Status</th>
-                    <th style="width:8%">Action</th>
+                    <th style="width:8%">Tindakan</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,6 +58,8 @@
                     <td><a v-if="staff.status == '1'">Aktif</a><a v-else-if="staff.status == '0'">Tidak Aktif</a></td>
                     <td>
                       <a @click="view(staff)" class="view" title="view staff profile"><em class="fa fa-eye"></em></a>
+                      <a @click="edit(staff)" class="view" title="Edit User Profile"><em class="fa fa-edit"></em></a>
+                      <a @click="remove(staff)" class="view" title="Delete User Profile"><em class="fa fa-trash"></em></a>
                     </td>
                   </tr>
                 </tbody>
@@ -110,6 +112,7 @@
 <script>
 import CommonHeader from '../../../components/CommonHeader.vue';
 import CommonSidebar from '../../../components/CommonSidebar.vue';
+import Swal from 'sweetalert2';
 export default {
   components: { CommonSidebar, CommonHeader },
   name: "staff-management",
@@ -167,6 +170,55 @@ export default {
         path: "/modules/Admin/staff-view",
         query: { id: data.id },
       });
+    },
+
+    async edit(data) {
+      this.$router.push({
+        path: "/modules/Admin/edit-staff",
+        query: { id: data.id },
+      });
+    },
+
+    async remove(data) {
+      Swal.fire({
+      title: 'Adakah Anda Pasti?',
+      text: "Perubahan Tidak Boleh Dibatalkan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Setuju!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+          this.removeUser(data.id);
+        Swal.fire(
+          'Dipadamkan!',
+          'Rekod Pengguna Telah Dipadamkan.',
+          'Success'
+        )
+      }
+    })
+    },
+
+    async removeUser(data) {
+      const headers = {
+        Authorization: "Bearer " + this.userdetails.access_token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
+      const response = await this.$axios.post(
+        "staff-management/UserRemove",
+        { id: data},
+        {
+          headers,
+        }
+      );
+      if (response.data.code == 200 || response.data.code == "200") {
+        this.list = response.data.list;
+        location.reload();
+      } else {
+        this.list = [];
+      }
     },
 
     async onnamechange(event) {
