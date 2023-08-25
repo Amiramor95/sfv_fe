@@ -1,9 +1,10 @@
 <template>
-  <loginHome />
+  <staff-login />
 </template>
 
 <script>
 import loginHome from './login-home.vue';
+import StaffLogin from './staff-login.vue';
 export default {
   head() {
       return {
@@ -21,7 +22,7 @@ export default {
         ]
       }
     },
-  components: { loginHome },
+  components: { loginHome, StaffLogin },
   name: "IndexPage",
 };
 </script>
