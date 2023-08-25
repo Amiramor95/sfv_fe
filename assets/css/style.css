@@ -233,7 +233,7 @@ ul {
 .add-btn {
     width: 25px;
     height: 25px;
-    background: #1BA1A1;
+    background: #0A0939;
     margin-left: auto;
     color: #FFF;
     text-align: center;
@@ -243,8 +243,8 @@ ul {
 }
 
 .add-btn:hover {
-    background: #BBF2EB;
-    color: #1BA1A1;
+    background: #bbd8f2;
+    color: #0A0939;
 }
 
 
@@ -407,7 +407,7 @@ ul {
 .view {
     width: 30px;
     height: 30px;
-    background: #1BA1A1;
+    background: #0A0939;
     display: inline-block;
     text-align: center;
     line-height: 31px;
@@ -417,7 +417,7 @@ ul {
 }
 
 .view:hover {
-    color: #000000;
+    color: #bbd8f2;
 }
 
 .accordion-box .accordion-body {
@@ -2614,8 +2614,8 @@ footer p {
 
 .btn-primary {
     color: #fff;
-    background-color: #1BA1A1 !important;
-    border-color: #1BA1A1 !important;
+    background-color: #0A0939 !important;
+    border-color: #0A0939 !important;
 }
 
 .add {
@@ -3095,7 +3095,7 @@ input:focus-visible {
 }
 
 .btn-ok {
-    background-color: #1BA1A1;
+    background-color: #0A0939;
     border: 0px;
     font-size: 14px;
     font-weight: 500;
