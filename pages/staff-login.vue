@@ -37,12 +37,12 @@
               value=""
             />
             <label class="form-check-label" for="inputRememberPassword"
-              >Remember Me</label
+              >Ingat saya</label
             >
           </div>
         </div>
         <div class="d-flex align-items-center">
-          <input type="submit" class="btn login-btn" value="Login" />
+          <input type="submit" class="btn login-btn" value="Log Masuk" />
           <!-- <a class="btn login-btn" href="">Login</a> -->
         </div>
       </form>

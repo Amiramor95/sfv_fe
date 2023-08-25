@@ -1,13 +1,13 @@
 <template>
   <div class="card mb-4">
     <div class="card-header bg-transparent">
-      <h4>Role Setting</h4>
+      <h4>Tetapan Peranan</h4>
     </div>
     <div class="card-body">
       <ul class="nav sub-tab" id="nav-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" data-bs-toggle="tab" href="#nav-Module" role="tab" aria-controls="nav-Module"
-            aria-selected="true"><i class="far fa-user-lock"></i> Setting 1: Role User</a>
+            aria-selected="true"><i class="far fa-user-lock"></i> Tetapan 1: Peranan Pengguna</a>
         </li>
       </ul>
       <div class="tab-content" id="nav-tabContent">
@@ -17,20 +17,20 @@
           <div class="filter-form">
             <div class="row mt-3">
               <div class="col-sm-6 mb-3">
-                <label class="form-label">Role Name</label>
+                <label class="form-label">Nama Peranan</label>
                 <input
                           type="text"
                           class="form-control"
-                          placeholder="Enter Service Code"
+                          placeholder="Masukkan Nama Peranan"
                           v-model="rolename"/>
               </div>
 
               <div class="col-sm-3 mb-4">
                         <label for="" class="form-label">Status</label>
                         <select class="form-select" v-model="rolestatus">
-                          <option value="">Select Status</option>
-                                <option value="0">Enable</option>
-                                <option value="1">Disable</option>
+                          <option value="">Pilih Status</option>
+                                <option value="0">Aktif</option>
+                                <option value="1">Tidak Aktif</option>
                         </select>
                       </div>
             </div>
@@ -39,20 +39,20 @@
                     </p>
 
                     <div class="d-flex justify-content-center" id="hidebutton1" ref="hidebutton1">
-                      <button type="submit" class="btn btn-warning btn-text" v-if="Id"><i class="fa fa-save"></i>Save Parameter</button>
-                      <button type="submit" class="btn btn-warning btn-text" v-if="!Id"><i class="fa fa-plus"></i> Add Parameter</button>
+                      <button type="submit" class="btn btn-warning btn-text" v-if="Id"><i class="fa fa-save"></i>Simpan</button>
+                      <button type="submit" class="btn btn-warning btn-text" v-if="!Id"><i class="fa fa-plus"></i> Tambah Parameter</button>
                     </div>
 
                     <div class="table-title">
-                    <h3>List of Roles</h3>
+                    <h3>Senarai Peranan</h3>
                   </div>
                   <table class="table table-striped data-table1 display nowrap" style="width: 100%">
                     <thead>
                       <tr>
                         <th style="width:3%">No</th>
-                        <th>Role Name</th>
+                        <th>Nama Peranan</th>
                         <th>Status</th>
-                        <th style="width:5%">Action</th>
+                        <th style="width:5%">Tindakan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -60,8 +60,8 @@
                         <td>{{index+1}}</td>
                         <td>{{rg.role_name}}</td>
                         <td>
-                          <p v-if="rg.status == 0">Enable</p>
-                          <p v-if="rg.status == 1">Disable</p>
+                          <p v-if="rg.status == 0">Aktif</p>
+                          <p v-if="rg.status == 1">Tidak Aktif</p>
                         </td>
                         <td>
                           <a class="edit" @click="editreg(rg)"><i class="fa fa-edit"></i></a>

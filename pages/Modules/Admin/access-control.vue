@@ -6,13 +6,13 @@
         <main>
             <div class="container-fluid px-4">
                 <div class="page-title">
-                    <h1>System Setting</h1>
+                    <h1>Tetapan Sistem</h1>
                 </div>
                 <div class="row">
                     <div class="card mb-4">
                         <div class="card-header icon-title">
                             <a href="#"><i class="fa fa-shield-alt"></i></a>
-                            <h4>Screen Management & Access Control</h4>
+                            <h4>Pengurusan Skrin & Kawalan Akses</h4>
                         </div>
                         <div class="card-body">
                             <nav>

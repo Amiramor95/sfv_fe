@@ -1,13 +1,13 @@
 <template>
   <div class="card mb-4">
     <div class="card-header bg-transparent">
-      <h4>Screen Access</h4>
+      <h4>Akses Skrin</h4>
     </div>
     <div class="card-body">
       <ul class="nav sub-tab" id="nav-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" data-bs-toggle="tab" href="#nav-Module" role="tab" aria-controls="nav-Module"
-            aria-selected="true"><i class="far fa-user-lock"></i> Setting 1: Access Screen</a>
+            aria-selected="true"><i class="far fa-user-lock"></i> Tetapan 1: Akses Skrin</a>
         </li>
       </ul>
       <div class="tab-content" id="nav-tabContent">
@@ -17,14 +17,14 @@
           <div class="filter-form">
             <div class="row mt-3">
               <div class="col-sm-6 mb-3">
-                <label class="form-label">Module Name</label>
+                <label class="form-label">Nama Modul</label>
                 <select
                   v-model="ModuleId"
                   class="form-select"
                   aria-label="Default select example"
                   @change="onsubmodelbind($event)"
                 >
-                  <option value="0">Please Select</option>
+                  <option value="0">Sila Pilih</option>
                   <option
                     v-for="mod in modulelist"
                     v-bind:key="mod.id"
@@ -36,14 +36,14 @@
               </div>
 
               <div class="col-sm-6 mb-3" v-show="IsSubmodule">
-                <label class="form-label">Sub Module Name</label>
+                <label class="form-label">Nama Sub Modul</label>
                 <select
                   v-model="SubmoduleId"
                   class="form-select"
                   aria-label="Default select example"
                   @change="onchangescreen($event)"
                 >
-                  <option value="0">Please Select</option>
+                  <option value="0">Sila Pilih</option>
                   <option
                     v-for="submod in submodulelist"
                     v-bind:key="submod.id"
@@ -64,11 +64,11 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Module</th>
-                <th>Sub Module</th>
-                <th>Screen Name</th>
-                <th>Description</th>
-                <th>Action</th>
+                <th>Modul</th>
+                <th>Sub Modul</th>
+                <th>Nama Skrin</th>
+                <th>Deskripsi</th>
+                <th>Tindakan</th>
               </tr>
             </thead>
             <tbody>
@@ -92,13 +92,13 @@
           <div class="form-bottom">
             <div class="row">
               <div class="col-sm-6 mb-3">
-                <label class="form-label">Name</label>
+                <label class="form-label">Nama</label>
                 <select
                   v-model="staffId"
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option value="0">Please Select</option>
+                  <option value="0">Sila Pilih</option>
                   <option
                     v-for="stf in stafflist"
                     v-bind:key="stf.id"
@@ -120,7 +120,7 @@
         </p>
         <br>
             <button class="btn btn-success pl-15" :class="SidebarAccess!=1?'hide':''">
-              Submit <i class="fal fa-arrow-from-left"></i>
+              Simpan <i class="fal fa-arrow-from-left"></i>
             </button>
           </div>
         </div>
