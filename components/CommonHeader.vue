@@ -111,7 +111,6 @@ export default {
       this.id=this.userdetails.user.id;
       this.email=this.userdetails.user.email;
       // this.role=this.userdetails.user.role;
-      // this.branch_id=this.userdetails.branch.branch_id;
       this.route_alt=this.userdetails.route;
     }
 
@@ -131,7 +130,7 @@ export default {
         "Content-Type": "application/json",
       };
       const response = await this.$axios.post("Notification/get",
-      {added_by:this.id,role:this.role,branch_id:this.branch_id,email:this.email,user_id:this.id},
+      {added_by:this.id,role:this.role,email:this.email,user_id:this.id},
        { headers });
       if (response.data.code == 200 || response.data.code == "200") {
         this.notificationlist = response.data.list.sort((a,b)=>b.time<a.time?1:-1);
