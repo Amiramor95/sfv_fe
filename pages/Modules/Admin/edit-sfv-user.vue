@@ -95,7 +95,7 @@
                                               <div class="col-md-3 mb-4">
                                                   <label for="" class="form-label">Peranan<span style="color:red">*</span></label>
 
-                                                  <input type="text" :maxlength="11" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" v-model="rolelist2"/>
+                                                  <input disabled type="text" :maxlength="11" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" v-model="rolelist2"/>
 
                                               </div>
                                           </div>
@@ -106,7 +106,14 @@
                                               <div class="row">
                                                   <div class="col-md-6 mb-4">
                                                       <label for="" class="form-label">Jenis Pemilik<span style="color:red">*</span></label>
-                                                      <input type="text" class="form-control" placeholder="Jenis Pemilik" v-model="factory_name" />
+                                                      <select class="form-select" aria-label="Default select example" v-model="owner_type">
+                                                            <option value="0">Sila Pilih</option>
+                                                            <option value="Pemilik Kilang Vaksin (Tempatan)">Pemilik Kilang Vaksin (Tempatan)</option>
+                                                            <option value="Pemilik Syarikat Pengimport">Pemilik Syarikat Pengimport</option>
+                                                            <option value="Pemilik Syarikat Pengedar">Pemilik Syarikat Pengedar</option>
+                                                            <option value="Pemilik Syarikat Penjual">Pemilik Syarikat Penjual</option>
+                                                            <option value="Doktor Veterinar (Pengedar/Penjual)">Doktor Veterinar (Pengedar/Penjual)</option>
+                                                        </select>
                                                   </div>
                                               </div>
 
@@ -187,6 +194,7 @@ import CommonHeader from "../../../components/CommonHeader.vue";
               list:[],
               nricerror: null,
               SidebarAccess: null,
+              Id:0,
           };
       },
       beforeMount() {
@@ -194,9 +202,6 @@ import CommonHeader from "../../../components/CommonHeader.vue";
           this.SidebarAccess = JSON.parse(localStorage.getItem("SidebarAccess"));
           let urlParams = new URLSearchParams(window.location.search);
           this.Id = urlParams.get("id");
-          if(this.Id>0) {
-            this.GetUserDetails();
-          }
       },
       mounted() {
 
@@ -425,6 +430,7 @@ this.$swal.fire({
             };
             let body = new FormData();
             body.append("added_by", this.userdetails.user.id);
+            body.append("id", this.Id)
             body.append("name", this.name);
             body.append("nric_no", this.nricno);
             body.append("address_1", this.BranchAddress1);
@@ -440,14 +446,12 @@ this.$swal.fire({
             body.append("name_vacs_manufacturer", this.factory_name);
             body.append("address_vacs_factory", this.factory_addr);
 
-            if(this.Id >0) {
               const response = await this.$axios.post(
                 "staff-management/UserUpdate",
                 body, {
                     headers,
                 }
             );
-            }
 
             if (response.data.code == 200 || response.data.code == "200") {
                 this.loader = false;
