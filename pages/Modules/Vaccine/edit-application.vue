@@ -1163,11 +1163,11 @@ latest 3 consecutive batches.
                       ><i class="fa fa-arrow-alt-to-left"></i> Kembali
                     </button>
                     <div  class="btn-right">
-                      <button type="submit" @click="onPass" class="btn btn-warning btn-text">
-                            <i class="fa fa-save"></i> Permohonan Diluluskan
+                      <button type="submit" @click="onDraft" class="btn btn-warning btn-text">
+                            <i class="fa fa-save"></i> Simpan Draf
                           </button>
-                    <button type="submit" @click="onDecline" class="btn btn-warning btn-text ml-auto">
-                      <i class="fa fa-paper-plane"></i> Permohonan Ditolak
+                    <button type="submit" @click="onSubmit" class="btn btn-warning btn-text ml-auto">
+                      <i class="fa fa-paper-plane"></i> Hantar Permohonan
                     </button>
                   </div>
                 </div>
@@ -1276,93 +1276,91 @@ latest 3 consecutive batches.
 
         },
 
-        async onPass(){
-
-            this.$swal.fire({
-            title: 'Adakah Anda Pasti untuk Meluluskan Permohonan ini?',
-            text: "Perubahan Tidak Boleh Dibatalkan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Setuju!',
-            cancelButtonText: 'Batal!',
-            reverseButtons: true
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-            const headers = {
-              Authorization: "Bearer " + this.userdetails.access_token,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            };
-            const response = await this.$axios.post(
-              "vaccine-registration/ResultPass",
-              {
-                id:this.Id,
-              },
-              {
-                headers,
-              }
-            );
-            if (response.data.code == 200 || response.data.code == "200") {
-                await this.$swal.fire(
-                                  'Permohonan Diluluskan!',
-                                  '',
-                                  'success',
-                                );
-                this.$router.push("/Modules/Screening/assessment");
-            } else {
-               this.$swal.fire({
-                              icon: 'error',
-                              title: 'Oops... Something Went Wrong!',
-                              text: 'the error is: ' + JSON.stringify(response.data.message),
-                            });
+        async onDraft(){
+          const headers = {
+            Authorization: "Bearer " + this.userdetails.access_token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          };
+          const response = await this.$axios.post(
+            "vaccine-registration/draftRegDraft",
+            {
+              id:this.Id,
+              email: this.userdetails.user.email,
+              applicant_name: this.applicant_name,
+              applicant_nric: this.applicant_nric,
+              address1: this.address1,
+              address2: this.address2,
+              postcode: this.postcode,
+              state: this.state,
+              city: this.city,
+              manufacturer_name: this.manufacturer_name,
+              vaccine_name: this.vaccine_name,
+              target_disease: this.target_disease,
+              target_species: this.target_species,
+            },
+            {
+              headers,
             }
+          );
+          if (response.data.code == 200 || response.data.code == "200") {
+              await this.$swal.fire(
+                                'Berjaya Disimpan Sebagai Draf!',
+                                '',
+                                'success',
+                              );
+              this.$router.push("/Modules/Vaccine/vaccine-list");
+          } else {
+             this.$swal.fire({
+                            icon: 'error',
+                            title: 'Oops... Something Went Wrong!',
+                            text: 'the error is: ' + JSON.stringify(response.data.message),
+                          });
           }
-        })
-    },
+        },
 
-    async onDecline(){
-            this.$swal.fire({
-            title: 'Adakah Anda Pasti untuk Menolak Permohonan ini?',
-            text: "Perubahan Tidak Boleh Dibatalkan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Setuju!',
-            cancelButtonText: 'Batal!',
-            reverseButtons: true
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-
-            const headers = {
-              Authorization: "Bearer " + this.userdetails.access_token,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            };
-            const response = await this.$axios.post(
-              "vaccine-registration/ResultDecline",
-              {
-                id:this.Id,
-              },
-              {
-                headers,
-              }
-            );
-            if (response.data.code == 200 || response.data.code == "200") {
-                await this.$swal.fire(
-                                  'Permohonan Ditolak!',
-                                  '',
-                                  'success',
-                                );
-                this.$router.push("/Modules/Screening/assessment");
-            } else {
-               this.$swal.fire({
-                              icon: 'error',
-                              title: 'Oops... Something Went Wrong!',
-                              text: 'the error is: ' + JSON.stringify(response.data.message),
-                            });
+        async onSubmit(){
+          const headers = {
+            Authorization: "Bearer " + this.userdetails.access_token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          };
+          const response = await this.$axios.post(
+            "vaccine-registration/draftRegSave",
+            {
+              id:this.Id,
+              email: this.userdetails.user.email,
+              applicant_name: this.applicant_name,
+              applicant_nric: this.applicant_nric,
+              address1: this.address1,
+              address2: this.address2,
+              postcode: this.postcode,
+              state: this.state,
+              city: this.city,
+              manufacturer_name: this.manufacturer_name,
+              vaccine_name: this.vaccine_name,
+              target_disease: this.target_disease,
+              target_species: this.target_species,
+            },
+            {
+              headers,
             }
+          );
+          if (response.data.code == 200 || response.data.code == "200") {
+              await this.$swal.fire(
+                                'Permohonan Berjaya Dihantar!',
+                                '',
+                                'success',
+                              );
+              this.$router.push("/Modules/Vaccine/vaccine-list");
+          } else {
+             this.$swal.fire({
+                            icon: 'error',
+                            title: 'Oops... Something Went Wrong!',
+                            text: 'the error is: ' + JSON.stringify(response.data.message),
+                          });
           }
-        })
-    },
+        },
 
         back(){
           this.$router.go(-1);
