@@ -6,7 +6,7 @@
             <main>
                 <div class="container-fluid px-4">
                     <div class="page-title">
-                        <h1>Pengurusan Pengguna</h1>
+                        <h1>Kemas Kini Profil</h1>
   
                     </div>
                     <div class="row">
