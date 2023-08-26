@@ -1164,10 +1164,10 @@
                       </button>
                       <div  class="btn-right">
                         <button type="submit" @click="onDraft" class="btn btn-warning btn-text">
-                              <i class="fa fa-save"></i> DITOLAK
+                              <i class="fa fa-save"></i> Dikembalikan
                             </button>
                       <button type="submit" @click="onSubmit" class="btn btn-warning btn-text ml-auto">
-                        <i class="fa fa-paper-plane"></i> LULUS
+                        <i class="fa fa-paper-plane"></i> Hantar
                       </button>
                     </div>
                   </div>
@@ -1339,7 +1339,7 @@
               "Content-Type": "application/json",
             };
             const response = await this.$axios.post(
-              "vaccine-registration/KeSaringanReg",
+              "vaccine-registration/KePenilaianReg",
               {
                 id:this.Id,
               },

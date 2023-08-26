@@ -98,7 +98,7 @@
         "Content-Type": "application/json",
       };
       const response = await this.$axios.post(
-        "screening/GetScreeningList",
+        "screening/GetPenilaianList",
         { email: this.userdetails.user.email},
         {
           headers,

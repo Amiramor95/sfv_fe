@@ -63,17 +63,17 @@
                               <tr>
                                 <th>Nama Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine</span> </th>
                                 <td>:</td>
-                                <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;" ></td>
+                                <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;" disabled></td>
                               </tr>
                               <tr>
                                 <th>Penyakit yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Disease</span> </th>
                                 <td>:</td>
-                                <td><textarea v-model="target_disease" rows="2" class="form-control" ></textarea></td>
+                                <td><textarea v-model="target_disease" rows="2" class="form-control" disabled></textarea></td>
                               </tr>
                               <tr>
                                 <th>Spesies yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Species</span> </th>
                                 <td>:</td>
-                                <td><textarea v-model="target_species" rows="2" class="form-control" ></textarea></td>
+                                <td><textarea v-model="target_species" rows="2" class="form-control" disabled></textarea></td>
                               </tr>
                               <tr>
                                 <th>Keadaan Penyakit<br> <span style="font-style:italic;color: grey;font-size: smaller;">Nature of Disease</span> </th>
@@ -1156,20 +1156,12 @@
                     <!--  -->
                   </div>
                          <br><br>
-                    <div class="d-flex">
+                  <div class="d-flex">
                       <button
                         @click="back"
                         class="btn btn-primary btn-text"
                         ><i class="fa fa-arrow-alt-to-left"></i> Kembali
                       </button>
-                      <div  class="btn-right">
-                        <button type="submit" @click="onDraft" class="btn btn-warning btn-text">
-                              <i class="fa fa-save"></i> DITOLAK
-                            </button>
-                      <button type="submit" @click="onSubmit" class="btn btn-warning btn-text ml-auto">
-                        <i class="fa fa-paper-plane"></i> LULUS
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1277,26 +1269,26 @@
           },
 
           async onDraft(){
-
-            this.$swal.fire({
-            title: 'Adakah Anda Pasti?',
-            text: "Perubahan Tidak Boleh Dibatalkan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Setuju!',
-            cancelButtonText: 'Batal!',
-            reverseButtons: true
-        }).then(async (result) => {
-            if (result.isConfirmed) {
             const headers = {
               Authorization: "Bearer " + this.userdetails.access_token,
               Accept: "application/json",
               "Content-Type": "application/json",
             };
             const response = await this.$axios.post(
-              "vaccine-registration/ReturnReg",
+              "vaccine-registration/regDraft",
               {
-                id:this.Id,
+                email: this.userdetails.user.email,
+                applicant_name: this.applicant_name,
+                applicant_nric: this.applicant_nric,
+                address1: this.address1,
+                address2: this.address2,
+                postcode: this.postcode,
+                state: this.state,
+                city: this.city,
+                manufacturer_name: this.manufacturer_name,
+                vaccine_name: this.vaccine_name,
+                target_disease: this.target_disease,
+                target_species: this.target_species,
               },
               {
                 headers,
@@ -1304,11 +1296,11 @@
             );
             if (response.data.code == 200 || response.data.code == "200") {
                 await this.$swal.fire(
-                                  'Berjaya Dikembalikan!',
+                                  'Berjaya Disimpan Sebagai Draf!',
                                   '',
                                   'success',
                                 );
-                this.$router.push("/Modules/Screening/screening");
+                this.$router.push("/Modules/Vaccine/vaccine-list");
             } else {
                this.$swal.fire({
                               icon: 'error',
@@ -1316,32 +1308,29 @@
                               text: 'the error is: ' + JSON.stringify(response.data.message),
                             });
             }
-          }
-        })
-    },
-
+          },
 
           async onSubmit(){
-            this.$swal.fire({
-            title: 'Adakah Anda Pasti?',
-            text: "Perubahan Tidak Boleh Dibatalkan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Setuju!',
-            cancelButtonText: 'Batal!',
-            reverseButtons: true
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-
             const headers = {
               Authorization: "Bearer " + this.userdetails.access_token,
               Accept: "application/json",
               "Content-Type": "application/json",
             };
             const response = await this.$axios.post(
-              "vaccine-registration/KeSaringanReg",
+              "vaccine-registration/regSave",
               {
-                id:this.Id,
+                email: this.userdetails.user.email,
+                applicant_name: this.applicant_name,
+                applicant_nric: this.applicant_nric,
+                address1: this.address1,
+                address2: this.address2,
+                postcode: this.postcode,
+                state: this.state,
+                city: this.city,
+                manufacturer_name: this.manufacturer_name,
+                vaccine_name: this.vaccine_name,
+                target_disease: this.target_disease,
+                target_species: this.target_species,
               },
               {
                 headers,
@@ -1349,11 +1338,11 @@
             );
             if (response.data.code == 200 || response.data.code == "200") {
                 await this.$swal.fire(
-                                  'Permohonan Berjaya Dihantar Ke Penilaian!',
+                                  'Permohonan Berjaya Dihantar!',
                                   '',
                                   'success',
                                 );
-                this.$router.push("/Modules/Screening/screening");
+                this.$router.push("/Modules/Vaccine/vaccine-list");
             } else {
                this.$swal.fire({
                               icon: 'error',
@@ -1361,15 +1350,12 @@
                               text: 'the error is: ' + JSON.stringify(response.data.message),
                             });
             }
-          }
-        })
-    },
-
+          },
 
           back(){
             this.$router.go(-1);
           }
-          }, ///method
+          },
         };
     </script>
 
@@ -1382,3 +1368,4 @@
         pointer-events: none;
     }
     </style>
+  
