@@ -68,7 +68,7 @@
   export default {
     components: { CommonSidebar, CommonHeader },
     name: "screening",
-  
+
     data(){
       return{
         userdetails: null,
@@ -113,14 +113,14 @@
 
     async view(data) {
       this.$router.push({
-        path: "/modules/Admin/view-saringanr",
+        path: "/modules/Admin/view-application-saringan",
         query: { id: data },
       });
     },
 
     async edit(data) {
       this.$router.push({
-        path: "/modules/Admin/edit-saringan",
+        path: "/modules/Admin/edit-application-saringan",
         query: { id: data },
       });
     },
