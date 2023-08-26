@@ -1277,6 +1277,17 @@
           },
   
           async onDraft(){
+
+            this.$swal.fire({
+            title: 'Adakah Anda Pasti?',
+            text: "Perubahan Tidak Boleh Dibatalkan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Setuju!',
+            cancelButtonText: 'Batal!',
+            reverseButtons: true
+        }).then(async (result) => {
+            if (result.isConfirmed) {
             const headers = {
               Authorization: "Bearer " + this.userdetails.access_token,
               Accept: "application/json",
@@ -1305,7 +1316,10 @@
                               text: 'the error is: ' + JSON.stringify(response.data.message),
                             });
             }
-          },
+          }
+        })
+    },
+
   
           async onSubmit(){
             this.$swal.fire({
