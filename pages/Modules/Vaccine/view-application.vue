@@ -63,17 +63,17 @@
                             <tr>
                               <th>Nama Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine</span> </th>
                               <td>:</td>
-                              <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;"></td>
+                              <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;" disabled></td>
                             </tr>
                             <tr>
                               <th>Penyakit yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Disease</span> </th>
                               <td>:</td>
-                              <td><textarea v-model="target_disease" rows="2" class="form-control"></textarea></td>
+                              <td><textarea v-model="target_disease" rows="2" class="form-control" disabled></textarea></td>
                             </tr>
                             <tr>
                               <th>Spesies yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Species</span> </th>
                               <td>:</td>
-                              <td><textarea v-model="target_species" rows="2" class="form-control"></textarea></td>
+                              <td><textarea v-model="target_species" rows="2" class="form-control" disabled></textarea></td>
                             </tr>
                             <tr>
                               <th>Keadaan Penyakit<br> <span style="font-style:italic;color: grey;font-size: smaller;">Nature of Disease</span> </th>
@@ -1057,7 +1057,7 @@ latest 3 consecutive batches.
                                   <input
                                   class="form-control"
                                   type="file"
-                                  id="formFileProductionOutline" @change=""disabled/>
+                                  id="formFileProductionOutline" @change="" disabled/>
                                   </td>
                             </tr>
                             <tr>
@@ -1162,14 +1162,6 @@ latest 3 consecutive batches.
                       class="btn btn-primary btn-text"
                       ><i class="fa fa-arrow-alt-to-left"></i> Kembali
                     </button>
-                    <div  class="btn-right">
-                      <button type="submit" @click="onDraft" class="btn btn-warning btn-text">
-                            <i class="fa fa-save"></i> Simpan Draf
-                          </button>
-                    <button type="submit" @click="onSubmit" class="btn btn-warning btn-text ml-auto">
-                      <i class="fa fa-paper-plane"></i> Hantar Permohonan
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1207,13 +1199,20 @@ latest 3 consecutive batches.
               vaccine_name:"",
               target_disease:"",
               target_species:"",
+              Id:""
           };
       },
       beforeMount() {
           this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
           this.getList();
+          let urlParams = new URLSearchParams(window.location.search);
+          this.Id = urlParams.get("id");
 
       },
+      mounted(){
+        this.getVacInfoList();
+      },
+
       methods: {
         async getList(){
           const headers = {
@@ -1242,6 +1241,31 @@ latest 3 consecutive batches.
           } else {
             window.alert("no data");
           }
+        },
+
+        async getVacInfoList(){
+          const headers = {
+            Authorization: "Bearer " + this.userdetails.access_token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          };
+
+          const response = await this.$axios.post(
+            "vaccine-registration/getVacInfoList",
+            { 
+              email: this.userdetails.user.email,
+              id: this.Id
+            },
+            {
+              headers,
+            });
+
+            if (response.data.code == 200 || response.data.code == "200"){
+              this.vaccine_name = response.data.list[0].vac_name;
+              this.target_disease = response.data.list[0].targetted_disease;
+              this.target_species = response.data.list[0].targetted_species;
+            }
+
         },
 
         async onDraft(){

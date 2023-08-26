@@ -23,7 +23,7 @@
                           class="form-control"
                           placeholder="Carian melalui nama vaksin atau status"
                           v-model="search"
-                          @keyup="OnSearch"
+                          @keyup=""
                         />
                       </div>
                     </div>
@@ -46,7 +46,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="(vac,index) in list" :key="index">
+                    <td>{{ index+1}}</td>
+                    <td>{{getFormattedDate(vac.created_at)}}</td>
+                    <td>{{vac.vac_name}}</td>
+                    <td>{{vac.name}}</td>
+                    <td>{{getFormattedDate(vac.updated_at)}}</td>
+                    <td><a v-if="vac.status == '1'">DIHANTAR</a><a v-else-if="vac.status == '0'">DRAF</a><a v-else-if="vac.status == '3'">DALAM PENILAIAN</a><a v-else-if="vac.status == '4'">DIKEMBALIKAN</a></td>
+                    <td>
+                      <a  v-if="vac.status == '1' || vac.status == '2' || vac.status == '3'" @click="view(vac)" class="view" title="View User Profile"><em class="fa fa-eye"></em></a>
+                      <a v-if="vac.status == '0' || vac.status == '4'" @click="edit(vac)" class="view" title="Edit User Profile"><em class="fa fa-edit"></em></a>
+                    </td>
+                  </tr>
+                    <!-- <tr>
                       <td>1</td>
                       <td>13-08-2023</td>
                       <td>VAKSI JENIS 2</td>
@@ -54,8 +66,8 @@
                       <td>13-08-2023</td>
                       <td>DIKEMBALIKAN</td>
                       <td style="width: 5px;align-items: center;"> <a class="edit" @click="oneditPatient()"><i class="fa fa-edit"></i></a></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                       <td>1</td>
                       <td>10-04-2021</td>
                       <td>VAKSI JENIS 1</td>
@@ -63,7 +75,7 @@
                       <td>10-06-2023</td>
                       <td>DALAM PENILAIAN</td>
                       <td> <a class="view" @click="oneditPatient()"><i class="fa fa-eye"></i></a></td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
                 <!--<p
@@ -88,6 +100,7 @@
   <script>
   import CommonHeader from '../../../components/CommonHeader.vue';
   import CommonSidebar from '../../../components/CommonSidebar.vue';
+  import moment from 'moment';
   export default {
     components: { CommonSidebar, CommonHeader },
     name: "patient-list",
@@ -112,58 +125,10 @@
     },
     beforeMount() {
       this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
-      this.getRole();
-  
+      this.getRole;
     },
     mounted() {
       this.GetList();
-      const headers = {
-        Authorization: "Bearer " + this.userdetails.access_token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
-      const axios = require("axios").default;
-      axios
-        .get(
-          `${this.$axios.defaults.baseURL}` +
-            "patient-registration/getPatientRegistrationList",
-          { headers }
-        )
-        .then((resp) => {
-          this.list = resp.data.list;
-          $(document).ready(function () {
-            $(".data-table").DataTable({
-              searching: false,
-              bLengthChange: false,
-              bInfo: false,
-              autoWidth: false,
-              responsive: true,
-              language: {
-                paginate: {
-                  next: '<i class="fad fa-arrow-to-right"></i>', // or '→'
-                  previous: '<i class="fad fa-arrow-to-left"></i>', // or '←'
-                },
-              },
-            });
-          });
-        })
-        .catch ((err) => {
-          this.loader = false;
-          this.$swal.fire({
-                    icon: 'error',
-                    title: 'Oops... Something Went Wrong!',
-                    text: 'the error is: ' + err,
-                    footer: ''
-                  });
-  
-          console.error(err);
-        });
-  
-         if(localStorage.getItem("keyword")!=''){
-        this.search2=localStorage.getItem("keyword");
-        this.search=this.search2;
-        this.OnSearch();
-      }
     },
     methods: {
       async getRole() {
@@ -189,35 +154,37 @@
               }
   
       },
+      async view(data) {
+      this.$router.push({
+        path: "/modules/Vaccine/view-application",
+        query: { id: data.id },
+      });
+    },
+    async edit(data) {
+      this.$router.push({
+        path: "/modules/Vaccine/edit-application",
+        query: { id: data.id },
+      });
+    },
       async GetList() {
         const headers = {
           Authorization: "Bearer " + this.userdetails.access_token,
           Accept: "application/json",
           "Content-Type": "application/json",
         };
-        const response1 = await this.$axios.get("service/list", { headers });
-        if (response1.data.code == 200 || response1.data.code == "200") {
-          this.servicelist = response1.data.list;
-        } else {
-          this.servicelist = [];
-        }
-        const response2 = await this.$axios.get("hospital/branch-list", {
+        const response = await this.$axios.post(
+        "vaccine-registration/applicationList",
+        { email: this.userdetails.user.email},
+        {
           headers,
-        });
-        if (response2.data.code == 200 || response2.data.code == "200") {
-          this.branchlist = response2.data.list;
-        } else {
-          this.branchlist = [];
         }
-        const respons = await this.$axios.get(
-          "general-setting/list?section=" + "assistance-or-supervision",
-          { headers }
-        );
-        if (respons.data.code == 200 || respons.data.code == "200") {
-          this.assistancelist = respons.data.list;
-        } else {
-          this.assistancelist = [];
-        }
+      );
+      if (response.data.code == 200 || response.data.code == "200") {
+        this.list = response.data.list;
+      } else {
+        this.list = [];
+      }
+        
       },
       oneditPatient(Id) {
          if(this.SidebarAccess==1){
@@ -269,6 +236,10 @@
                   });
         }
       },
+
+      getFormattedDate(date) {
+            return moment(date).format("DD-MM-YYYY")
+        },
     },
   };
   </script>

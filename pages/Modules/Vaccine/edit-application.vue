@@ -63,17 +63,17 @@
                             <tr>
                               <th>Nama Vaksin<br> <span style="font-style:italic;color: grey;font-size: smaller;">Name of Vaccine</span> </th>
                               <td>:</td>
-                              <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;"></td>
+                              <td><input type="text" v-model="vaccine_name" class="form-control" style="width: 100%;" ></td>
                             </tr>
                             <tr>
                               <th>Penyakit yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Disease</span> </th>
                               <td>:</td>
-                              <td><textarea v-model="target_disease" rows="2" class="form-control"></textarea></td>
+                              <td><textarea v-model="target_disease" rows="2" class="form-control" ></textarea></td>
                             </tr>
                             <tr>
                               <th>Spesies yang disasarkan<br> <span style="font-style:italic;color: grey;font-size: smaller;">Target Species</span> </th>
                               <td>:</td>
-                              <td><textarea v-model="target_species" rows="2" class="form-control"></textarea></td>
+                              <td><textarea v-model="target_species" rows="2" class="form-control" ></textarea></td>
                             </tr>
                             <tr>
                               <th>Keadaan Penyakit<br> <span style="font-style:italic;color: grey;font-size: smaller;">Nature of Disease</span> </th>
@@ -1057,7 +1057,7 @@ latest 3 consecutive batches.
                                   <input
                                   class="form-control"
                                   type="file"
-                                  id="formFileProductionOutline" @change=""disabled/>
+                                  id="formFileProductionOutline" @change="" disabled/>
                                   </td>
                             </tr>
                             <tr>
@@ -1156,7 +1156,7 @@ latest 3 consecutive batches.
                   <!--  -->
                 </div>
                        <br><br>
-                <div class="d-flex">
+                  <div class="d-flex">
                     <button
                       @click="back"
                       class="btn btn-primary btn-text"
@@ -1207,13 +1207,20 @@ latest 3 consecutive batches.
               vaccine_name:"",
               target_disease:"",
               target_species:"",
+              Id:""
           };
       },
       beforeMount() {
           this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
           this.getList();
+          let urlParams = new URLSearchParams(window.location.search);
+          this.Id = urlParams.get("id");
 
       },
+      mounted(){
+        this.getVacInfoList();
+      },
+
       methods: {
         async getList(){
           const headers = {
@@ -1244,6 +1251,31 @@ latest 3 consecutive batches.
           }
         },
 
+        async getVacInfoList(){
+          const headers = {
+            Authorization: "Bearer " + this.userdetails.access_token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          };
+
+          const response = await this.$axios.post(
+            "vaccine-registration/getVacInfoList",
+            { 
+              email: this.userdetails.user.email,
+              id: this.Id
+            },
+            {
+              headers,
+            });
+
+            if (response.data.code == 200 || response.data.code == "200"){
+              this.vaccine_name = response.data.list[0].vac_name;
+              this.target_disease = response.data.list[0].targetted_disease;
+              this.target_species = response.data.list[0].targetted_species;
+            }
+
+        },
+
         async onDraft(){
           const headers = {
             Authorization: "Bearer " + this.userdetails.access_token,
@@ -1251,8 +1283,9 @@ latest 3 consecutive batches.
             "Content-Type": "application/json",
           };
           const response = await this.$axios.post(
-            "vaccine-registration/regDraft",
+            "vaccine-registration/draftRegDraft",
             { 
+              id:this.Id,
               email: this.userdetails.user.email,
               applicant_name: this.applicant_name,
               applicant_nric: this.applicant_nric,
@@ -1293,8 +1326,9 @@ latest 3 consecutive batches.
             "Content-Type": "application/json",
           };
           const response = await this.$axios.post(
-            "vaccine-registration/regSave",
+            "vaccine-registration/draftRegSave",
             { 
+              id:this.Id,
               email: this.userdetails.user.email,
               applicant_name: this.applicant_name,
               applicant_nric: this.applicant_nric,
