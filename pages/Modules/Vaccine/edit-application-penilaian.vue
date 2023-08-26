@@ -1163,12 +1163,12 @@ latest 3 consecutive batches.
                       ><i class="fa fa-arrow-alt-to-left"></i> Kembali
                     </button>
                     <div  class="btn-right">
-                      <button type="submit" @click="onPass" class="btn btn-warning btn-text">
-                            <i class="fa fa-save"></i> Permohonan Diluluskan
-                          </button>
                     <button type="submit" @click="onDecline" class="btn btn-warning btn-text ml-auto">
                       <i class="fa fa-paper-plane"></i> Permohonan Ditolak
                     </button>
+                    <button type="submit" @click="onPass" class="btn btn-warning btn-text">
+                            <i class="fa fa-save"></i> Permohonan Diluluskan
+                         </button>
                   </div>
                 </div>
               </div>
