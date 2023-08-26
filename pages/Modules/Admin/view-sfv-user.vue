@@ -106,7 +106,14 @@
                                                 <div class="row">
                                                     <div class="col-md-6 mb-4">
                                                         <label for="" class="form-label">Jenis Pemilik<span style="color:red">*</span></label>
-                                                        <input disabled type="text" class="form-control" placeholder="Jenis Pemilik" v-model="factory_name" />
+                                                        <select disabled class="form-select" aria-label="Default select example" v-model="owner_type">
+                                                            <option value="0">Sila Pilih</option>
+                                                            <option value="Pemilik Kilang Vaksin (Tempatan)">Pemilik Kilang Vaksin (Tempatan)</option>
+                                                            <option value="Pemilik Syarikat Pengimport">Pemilik Syarikat Pengimport</option>
+                                                            <option value="Pemilik Syarikat Pengedar">Pemilik Syarikat Pengedar</option>
+                                                            <option value="Pemilik Syarikat Penjual">Pemilik Syarikat Penjual</option>
+                                                            <option value="Doktor Veterinar (Pengedar/Penjual)">Doktor Veterinar (Pengedar/Penjual)</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
