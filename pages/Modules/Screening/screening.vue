@@ -22,7 +22,6 @@
                         class="form-control"
                         placeholder="Carian melalui nama vaksin atau status"
                         v-model="search"
-                        @keyup="OnSearch"
                       />
                     </div>
                   </div>
@@ -41,14 +40,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(vaccine,index) in vaccines" :key="index"> <!--this list is retrieved from vaccine_reg joined with multiple tables-->
+                    <tr v-for="(vac,index) in list" :key="index"> <!--this list is retrieved from vaccine_reg joined with multiple tables-->
                       <td>{{ index+1 }}</td>
-                      <td>{{ vaccine.created_at }}</td> <!--from "vaccine_reg" table-->
-                      <td>{{ vaccine.vac_name }}</td> <!--from "admin_info" table -->
-                      <td>{{ vaccine.name }}</td> <!-- from "staff_management" table-->
-                      <td>{{ vaccine.updated_at }}</td> <!--from "vaccine_reg" table-->
-                      <td>{{ vaccine.status }}</td><!--from "vaccine_reg" table-->
-                      <td>some buttons</td>
+                      <td>{{ getFormattedDate(vac.created_at) }}</td> <!--from "vaccine_reg" table-->
+                      <td>{{ vac.vac_name }}</td> <!--from "admin_info" table -->
+                      <td>{{ vac.name }}</td> <!-- from "staff_management" table-->
+                      <td>{{ vac.updated_at }}</td> <!--from "vaccine_reg" table-->
+                      <td> Proses Saringan</td><!--from "vaccine_reg" table-->
+                      <td>
+                      <a @click="view(vac.id)" class="view" title="Semakan Saringan"><em class="fa fa-eye"></em></a>
+                      <a @click="edit(vac.id)" class="view" title="Tindakan Saringan"><em class="fa fa-edit"></em></a>
+                      </td>
                     </tr>
                 </tbody>
               </table>
@@ -62,6 +64,7 @@
 <script>
   import CommonHeader from '../../../components/CommonHeader.vue';
   import CommonSidebar from '../../../components/CommonSidebar.vue';
+  import moment from 'moment';
   export default {
     components: { CommonSidebar, CommonHeader },
     name: "screening",
@@ -69,29 +72,59 @@
     data(){
       return{
         userdetails: null,
-        vaccines: [],
+        list:[],
         search: "",
       };
     },
 
     beforeMount(){
       this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+
+    },
+
+    mounted(){
+      this.getList();
     },
 
     methods:{
-      async getList(){
-        const headers = {
-          Authorization: "Bearer " + this.userdetails.access_token,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        };
-        const response = await this.$axios.get("screening/list", { headers });
-        if (response.data.code == 200 || response.data.code == "200") {
-          this.vaccines = response.data.list;
-        } else {
-          this.vaccines = [];
+
+      getFormattedDate(date) {
+            return moment(date).format("DD-MM-YYYY HH:mm:ss")
+        },
+      async getList() {
+      const headers = {
+        Authorization: "Bearer " + this.userdetails.access_token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
+      const response = await this.$axios.post(
+        "screening/GetScreeningList",
+        { email: this.userdetails.user.email},
+        {
+          headers,
         }
-      },
+      );
+      if (response.data.code == 200 || response.data.code == "200") {
+        this.list = response.data.list;
+      } else {
+        this.list = [];
+      }
+    },
+
+    async view(data) {
+      this.$router.push({
+        path: "/modules/Admin/view-saringanr",
+        query: { id: data },
+      });
+    },
+
+    async edit(data) {
+      this.$router.push({
+        path: "/modules/Admin/edit-saringan",
+        query: { id: data },
+      });
+    },
+
     },
   }
 
