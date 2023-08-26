@@ -302,12 +302,12 @@
             async onCreateStaff() {
 
                 this.$swal.fire({
-                    title: 'Are you sure to save this?',
-                    text: "You won't be able to revert this!",
+                    title: 'Adakah Anda Pasti untuk Menyimpan Rekod Ini?',
+                    text: "Perubahan Tidak Boleh Dibatalkan!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Yes, save it!',
-                    cancelButtonText: 'No, cancel!',
+                    confirmButtonText: 'Setuju!',
+                    cancelButtonText: 'Batal!',
                     reverseButtons: true
                 }).then(async (result) => {
                     if (result.isConfirmed) {

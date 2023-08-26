@@ -1153,6 +1153,11 @@ latest 3 consecutive batches.
                       <br>
                     </div>
                   </div>
+
+                  <div class="col-md-8 mb-6">
+                    <label class="form-label">CATATAN</label>
+                    <textarea rows="2" class="form-control" placeholder="Sila Tinggalkan Komen" v-model="comment"></textarea>
+                  </div>
                   <!--  -->
                 </div>
                        <br><br>
@@ -1207,6 +1212,7 @@ latest 3 consecutive batches.
               vaccine_name:"",
               target_disease:"",
               target_species:"",
+              comment: "",
               Id:""
           };
       },
@@ -1297,6 +1303,7 @@ latest 3 consecutive batches.
               "vaccine-registration/ResultPass",
               {
                 id:this.Id,
+                comment:this.comment,
               },
               {
                 headers,
@@ -1341,6 +1348,7 @@ latest 3 consecutive batches.
               "vaccine-registration/ResultDecline",
               {
                 id:this.Id,
+                comment:this.comment,
               },
               {
                 headers,
