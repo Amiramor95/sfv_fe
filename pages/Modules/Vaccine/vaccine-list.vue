@@ -52,9 +52,9 @@
                     <td>{{vac.vac_name}}</td>
                     <td>{{vac.name}}</td>
                     <td>{{getFormattedDate(vac.updated_at)}}</td>
-                    <td><a v-if="vac.status == '1'">DIHANTAR</a><a v-else-if="vac.status == '0'">DRAF</a><a v-else-if="vac.status == '3'">DALAM PENILAIAN</a><a v-else-if="vac.status == '4'">DIKEMBALIKAN</a></td>
+                    <td><a v-if="vac.status == '1'">DIHANTAR</a><a v-else-if="vac.status == '0'">DRAF</a><a v-else-if="vac.status == '2'">DALAM PENILAIAN</a><a v-else-if="vac.status == '3'">LULUS</a><a v-else-if="vac.status == '4'">DIKEMBALIKAN</a><a v-else-if="vac.status == '5'">DITOLAK</a></td>
                     <td>
-                      <a  v-if="vac.status == '1' || vac.status == '2' || vac.status == '3'" @click="view(vac)" class="view" title="View User Profile"><em class="fa fa-eye"></em></a>
+                      <a  v-if="vac.status == '1' || vac.status == '2' || vac.status == '3' || vac.status == '5'" @click="view(vac)" class="view" title="View User Profile"><em class="fa fa-eye"></em></a>
                       <a v-if="vac.status == '0' || vac.status == '4'" @click="edit(vac)" class="view" title="Edit User Profile"><em class="fa fa-edit"></em></a>
                     </td>
                   </tr>
@@ -104,7 +104,7 @@
   export default {
     components: { CommonSidebar, CommonHeader },
     name: "patient-list",
-  
+
     data() {
       return {
         userdetails: null,
@@ -152,7 +152,7 @@
                 this.dataReady= true;
                 this.dataReady2= false;
               }
-  
+
       },
       async view(data) {
       this.$router.push({
@@ -184,7 +184,7 @@
       } else {
         this.list = [];
       }
-        
+
       },
       oneditPatient(Id) {
          if(this.SidebarAccess==1){
@@ -220,7 +220,7 @@
           if (response.data.list.length > 0) {
             this.list.splice(0, this.list.length);
             this.list = response.data.list;
-  
+
           } else {
             this.list.splice(0, this.list.length);
             if ($.fn.DataTable.isDataTable(".data-table")) {
@@ -243,4 +243,3 @@
     },
   };
   </script>
-  
