@@ -52,7 +52,7 @@
                                             <br>
                                             <br>
                                             <div class="form-foter mt-3">
-                                                <a href="/app/modules/Admin/user-registration" class="btn btn-primary btn-text"><i class="fa fa-arrow-alt-to-left"></i> Kembali</a>
+                                                <a @click="back" class="btn btn-primary btn-text"><i class="fa fa-arrow-alt-to-left"></i> Kembali</a>
                                                 <div class="ml-auto" id="hidebutton" ref="hidebutton">
                                                       <button type="submit" class="btn btn-warning btn-text" >
                                                           <i class="fa fa-save"></i> Simpan
@@ -107,7 +107,9 @@
         },
         methods: {
 
-
+            back(){
+            this.$router.go(-1);
+          },
             async GetUserDetails() {
                 const headers = {
                     Authorization: "Bearer " + this.userdetails.access_token,

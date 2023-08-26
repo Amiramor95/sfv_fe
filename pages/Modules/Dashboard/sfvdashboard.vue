@@ -14,7 +14,7 @@
                                 <div class="card-details">
                                     <img src="~/assets/images/schedule.png">
                                     <div class="text">
-                                        <h1>{{ todays_appointments }}</h1>
+                                        <h1>{{ permohonan }}</h1>
                                         <p>Jumlah Permohonan Vaksin</p>
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
                                 <div class="card-details">
                                     <img src="~/assets/images/man.png">
                                     <div class="text">
-                                        <h1>{{ personal_task }}</h1>
+                                        <h1>{{ pemohon }}</h1>
                                         <p>Jumlah Pengguna</p>
                                     </div>
                                 </div>
@@ -36,12 +36,24 @@
                                 <div class="card-details">
                                     <img src="~/assets/images/team.png">
                                     <div class="text">
-                                        <h1>{{ team_task }}</h1>
+                                        <h1>{{ pentadbir }}</h1>
                                         <p>Jumlah Admin Pentadbir</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="card">
+                                <div class="card-details">
+                                    <img src="~/assets/images/team.png">
+                                    <div class="text">
+                                        <h1>{{ penyemak }}</h1>
+                                        <p>Jumlah Penyemak</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
 
@@ -89,9 +101,10 @@ export default {
     data() {
         return {
             userdetails: null,
-            todays_appointments: "0",
-            personal_task: "0",
-            team_task: "0",
+            permohonan: "0",
+            penyemak: "0",
+            pentadbir: "0",
+            pemohon: "0",
             list: [],
             cd_draft:[],
             review_patient:[],
@@ -104,14 +117,10 @@ export default {
     },
     beforeMount() {
         this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
-        if(this.userdetails){
       this.id=this.userdetails.user.id;
       this.email=this.userdetails.user.email;
-    //   this.branch=this.userdetails.branch.branch_id;
       this.name=this.userdetails.user.name;
-    //   this.branch_name=this.userdetails.branch.hospital_branch_name;
 
-    }
     },
     mounted(){
       this.Getrecord();
@@ -134,7 +143,10 @@ export default {
                     }
                 );
                 if (response.data.code == 200 || response.data.code == "200") {
-                    this.email = response.data.list[0].email;
+                    this.permohonan= response.data.permohonan;
+                    this.penyemak= response.data.penyemak;
+                    this.pentadbir= response.data.pentadbir;
+                    this.pemohon= response.data.pengguna;
 
           
                 } else {
