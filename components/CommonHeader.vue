@@ -79,8 +79,9 @@
             <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
             <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" style="cursor:pointer;" @click="Logout()">Logout</a></li>
-            <li><a href="/app/modules/change-password" class="dropdown-item">Change Password</a></li>
+            <li><a class="dropdown-item" style="cursor:pointer;" @click="Logout()">Log Keluar</a></li>
+            <li><a href="/app/modules/user-profile" class="dropdown-item">Lihat Profile</a></li>
+            <li><a href="/app/modules/change-password" class="dropdown-item">Tukar Kata Laluan</a></li>
           </ul>
         </li>
       </ul>
