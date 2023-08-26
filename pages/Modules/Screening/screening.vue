@@ -113,14 +113,14 @@
 
     async view(data) {
       this.$router.push({
-        path: "/modules/Admin/view-application-saringan",
+        path: "/modules/Vaccine/view-application-saringan",
         query: { id: data },
       });
     },
 
     async edit(data) {
       this.$router.push({
-        path: "/modules/Admin/edit-application-saringan",
+        path: "/modules/Vaccine/edit-application-saringan",
         query: { id: data },
       });
     },
